@@ -1,0 +1,8 @@
+
+.profile {
+    grid-area: c;
+    background-color: burlywood;
+}
+.profile img {
+ width: 100%;
+}
