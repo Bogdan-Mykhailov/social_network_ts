@@ -1,12 +1,12 @@
 import React from "react";
-import './header.css'
+import classes from './header.module.css'
 import bomb from './bomb.png'
 
 const Header = () => {
-  return(
-      <header className='header'>
-        <img src={bomb} alt="bomb"/>
-      </header>
+  return (
+    <header className={classes.header}>
+      <img src={bomb} alt="bomb"/>
+    </header>
   )
 }
-    export default Header;
+export default Header;
