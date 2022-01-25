@@ -2,8 +2,9 @@ import React from "react";
 import user from './user.png'
 import classes from './post.module.css'
 
+type PostPropsType = {message: string, count: number}
 
-const Post = (props: any) => {
+const Post = (props: PostPropsType) => {
   return (
     <div className={classes.item}>
       <img src={user} alt="user"/>
