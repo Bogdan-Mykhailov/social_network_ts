@@ -10,8 +10,9 @@
 }
 .item a {
     text-decoration: none;
-    padding-left: 25%;
+    padding: 30px;
+    color: white;
 }
-.active {
-    color: #AACFE3;
+.item a.activeLink {
+    color: black;
 }
