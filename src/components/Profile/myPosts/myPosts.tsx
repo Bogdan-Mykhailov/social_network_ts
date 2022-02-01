@@ -6,8 +6,8 @@ const MyPosts = () => {
   return (
     <div>
       <div>
-        <input type="text"/>
-        <button className='inputButton'>Add post</button>
+        <input type="text" placeholder='Post'/>
+        <button className='inputButton'>Add</button>
       </div>
       <div className={classes.posts}>
         <Post message='ABM corporation got a 450 bln dollars from Meta company.' count={15}/>
