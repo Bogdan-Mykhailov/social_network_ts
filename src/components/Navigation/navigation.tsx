@@ -9,7 +9,7 @@ const Navigation = () => {
   return (
     <nav className={classes.nav}>
       <div >
-        <NawRow icon={<HomeRoundedIcon />} url='/profile' title='Profile'/>
+        <NawRow icon={<HomeRoundedIcon className={classes.icons}/>} url='/profile' title='Profile'/>
         <NawRow url='/dialogs' title='Messages'/>
         <NawRow url='/news' title='News'/>
         <NawRow url='/music' title='Music'/>
