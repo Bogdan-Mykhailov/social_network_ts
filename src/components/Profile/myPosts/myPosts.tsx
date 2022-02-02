@@ -1,3 +1,4 @@
+import { TextField, Button } from "@mui/material";
 import React from "react";
 import classes from './myPosts.module.css'
 import Post from "./post/post";
@@ -6,10 +7,10 @@ const MyPosts = () => {
   return (
     <div>
       <div>
-        <input type="text" placeholder='Post'/>
+        <TextField  label="Post" id="fullWidth" className={classes.textField}/>
       </div>
       <div>
-        <button className='inputButton'>Add</button>
+        <Button size="small" className={classes.btn}>Add</Button>
       </div>
       <div className={classes.post}>
         <Post message='ABM corporation got a 450 bln dollars from Meta company.' count={15}/>
