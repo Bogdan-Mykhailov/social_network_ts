@@ -2,7 +2,11 @@ import React from "react";
 import user from './user.png'
 import classes from './post.module.css'
 
-type PostPropsType = {message: string, count: number}
+type PostPropsType = {
+  id: number,
+  message: string,
+  count: number,
+}
 
 const Post = (props: PostPropsType) => {
   return (
