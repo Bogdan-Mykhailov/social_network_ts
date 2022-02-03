@@ -10,7 +10,7 @@ const Post = (props: PostPropsType) => {
       <img src={user} alt="user"/>
       {props.message}
       <div>
-        <span>👍🏿</span>
+        <span>👍🏼</span>
         {props.count}
       </div>
     </div>
