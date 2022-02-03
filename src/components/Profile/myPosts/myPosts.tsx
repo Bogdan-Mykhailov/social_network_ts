@@ -3,13 +3,18 @@ import React from "react";
 import classes from './myPosts.module.css'
 import Post from "./post/post";
 
-let postsData = [
-  {id: 1, message: 'ABM corporation got a 450 bln dollars from Meta company.', count: 14515},
-  {id: 2, message: 'Bogdan, Andrii and Maryna create ABM corporation in 2021', count: 224513445}
-]
+type MyPostsPropsType = {
+  id: number,
+  message: string,
+  count: number,
+}
 
-const MyPosts = () => {
-  let postDataItem = postsData.map((i => <Post id={i.id} message={i.message} count={i.count}/>))
+type MyPostsProps = {
+  data: Array<MyPostsPropsType>
+}
+
+const MyPosts = (props: MyPostsProps) => {
+  let postDataItem = props.data.map((i => <Post id={i.id} message={i.message} count={i.count}/>))
   return (
     <div>
       <div>

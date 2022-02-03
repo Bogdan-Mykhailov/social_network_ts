@@ -12,7 +12,6 @@ const ProfileInfo = () => {
           alt="sky"/>
       </div>
       <Avatar/>
-      <MyPosts/>
     </div>
   );
 };
