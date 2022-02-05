@@ -1,6 +1,6 @@
 import React from "react";
 import user from './user.png'
-import classes from './post.module.css'
+import classes from './Post.module.css'
 
 type PostPropsType = {
   id: number,

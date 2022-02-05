@@ -1,7 +1,7 @@
 import {TextField, Button} from "@mui/material";
 import React from "react";
-import classes from './myPosts.module.css'
-import Post from "./post/post";
+import classes from './MyPosts.module.css'
+import Post from "./post/Post";
 
 type MyPostsPropsType = {
   id: number,
@@ -10,7 +10,7 @@ type MyPostsPropsType = {
 }
 
 type MyPostsProps = {
-  data: Array<MyPostsPropsType>
+  data: MyPostsPropsType[]
 }
 
 const MyPosts = (props: MyPostsProps) => {

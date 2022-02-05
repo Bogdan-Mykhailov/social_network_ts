@@ -1,17 +1,19 @@
 import React from 'react';
-import Avatar from "../../Avatar/avatar";
-import MyPosts from "../myPosts/myPosts";
+import MyPosts from "../myPosts/MyPosts";
 import classes from './ProfileInfo.module.css'
 
 const ProfileInfo = () => {
   return (
-    <div>
-      <div>
+    <div className={classes.container}>
+
+      <div className={classes.wallpaper}>
         <img
-          src="https://media.istockphoto.com/photos/several-lightning-strikes-during-a-strong-thunderstorm-over-the-lake-picture-id1257611243?k=20&m=1257611243&s=612x612&w=0&h=8q__ZdUQUGQWzLjAQBjdzsCgTVPGCp2MeyF7FOthb5o="
-          alt="sky"/>
+          src="http://t0.gstatic.com/licensed-image?q=tbn:ANd9GcTNahDrhRnvXhOfNbQANdrroojwfoQrGX8KSQUfnERS_CRcU669Mo7xY51E-wriWreZttIL0XTs_cZGfOkcmvE9SGY0MO8H"/>
       </div>
-      <Avatar/>
+
+      <div className={classes.avatar}>
+        <img src="https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_1280.png" alt="avatar"/>
+      </div>
     </div>
   );
 };

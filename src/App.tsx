@@ -1,20 +1,19 @@
 import React from 'react';
 import './App.css';
-import Header from "./components/Header/header";
-import Navigation from "./components/Navigation/navigation"
-import Profile from './components/Profile/profile'
+import Header from "./components/Header/Header";
+import Navigation from "./components/Navigation/Navigation"
+import Profile from './components/Profile/Profile'
 import Dialogs from "./components/Dialogs/Dialogs";
-import News from "./components/News/news";
-import Music from "./components/Music/music";
-import Settings from './components/Settings/settings'
+import News from "./components/News/News";
+import Music from "./components/Music/Music";
+import Settings from './components/Settings/Settings';
+import Sidebar from "./components/Sidebar/Sidebar";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import state, {DialogsDataType, MessagesDataType, PostDataType} from "./redux/state";
-
+import {DialogsPageType, ProfilePageType} from "./redux/State";
 
 type AppProps = {
-  dialogs: Array<DialogsDataType>,
-  messages: Array<MessagesDataType>,
-  posts: Array<PostDataType>
+  profilePage: ProfilePageType
+  dialogsPage: DialogsPageType
 }
 
 const App = (props: AppProps) => {
@@ -25,9 +24,10 @@ const App = (props: AppProps) => {
         <Navigation/>
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path='/' element={<Profile posts={state.profilePage.postsData}/>}/>
-            <Route path='/profile/*' element={<Profile posts={state.profilePage.postsData}/>}/>
-            <Route path='/dialogs/*' element={<Dialogs  dialogs={state.dialogsPage.dialogsData} messages={state.dialogsPage.messageData}/>}/>
+            <Route path='/' element={<Profile posts={props.profilePage.postsData}/>}/>
+            <Route path='/profile/*' element={<Profile posts={props.profilePage.postsData}/>}/>
+            <Route path='/dialogs/*' element={<Dialogs dialogs={props.dialogsPage.dialogsData}
+                                                       messages={props.dialogsPage.messageData}/>}/>
             <Route path='/news/*' element={<News/>}/>
             <Route path='/music/*' element={<Music/>}/>
             <Route path='/settings/*' element={<Settings/>}/>
@@ -37,4 +37,5 @@ const App = (props: AppProps) => {
     </BrowserRouter>
   )
 }
+
 export default App;

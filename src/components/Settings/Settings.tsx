@@ -1,5 +1,5 @@
 import React from "react";
-import classes from './settings.module.css'
+import classes from './Settings.module.css'
 
 
 const Settings = () => {

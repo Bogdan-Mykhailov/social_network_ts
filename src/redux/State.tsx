@@ -12,13 +12,13 @@ export type PostDataType = {
   count: number
 }
 
-type ProfilePageType = {
-  postsData: Array<PostDataType>
+export type ProfilePageType = {
+  postsData: PostDataType[]
 }
 
-type DialogsPageType = {
-  dialogsData: Array<DialogsDataType>
-  messageData: Array<MessagesDataType>
+export type DialogsPageType = {
+  dialogsData: DialogsDataType[]
+  messageData: MessagesDataType[]
 }
 
 type RootStateType = {
@@ -50,7 +50,6 @@ let state: RootStateType = {
       {id: 5, message: 'Thats sounds good. How is your Wednesday?'},
     ]
   }
-
 }
 
 export default state;
