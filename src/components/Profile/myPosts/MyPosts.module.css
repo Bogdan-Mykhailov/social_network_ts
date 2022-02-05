@@ -1,15 +1,13 @@
-/*input {*/
-/*  margin: 10px 10px 10px 20px;*/
-/*}*/
+.textField {
+  margin: 30px 0 0 20px;
+  width: 290px;
+}
 
-/*button {*/
-/*  margin: 10px 10px 10px 20px;*/
-/*}*/
+.add {
+  margin: 10px 0 0 20px;
+  size: sma;
+}
 
-/*.post {*/
-/*  padding: 20px;*/
-/*}*/
-
-/*.textField {*/
-/*  width: 290px;*/
-/*}*/
+.add h2 {
+  font-size: 30px;
+}

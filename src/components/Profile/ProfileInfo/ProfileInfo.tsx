@@ -8,7 +8,7 @@ const ProfileInfo = () => {
 
       <div className={classes.wallpaper}>
         <img
-          src="http://t0.gstatic.com/licensed-image?q=tbn:ANd9GcTNahDrhRnvXhOfNbQANdrroojwfoQrGX8KSQUfnERS_CRcU669Mo7xY51E-wriWreZttIL0XTs_cZGfOkcmvE9SGY0MO8H"/>
+          src="http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcSVLmGdjSQnAkpnhHHpIkKitCPad-yC8VkXfKhtl7z-M9gkg7kJ-M8vomvs6WYQXWFN_bkA7XK-mOfEppXOjZBfJuaCHh8N"/>
       </div>
 
       <div className={classes.avatar}>

@@ -1,4 +1,4 @@
-import {TextField, Button} from "@mui/material";
+import {TextField, Fab} from "@mui/material";
 import React from "react";
 import classes from './MyPosts.module.css'
 import Post from "./post/Post";
@@ -21,7 +21,9 @@ const MyPosts = (props: MyPostsProps) => {
         <TextField label="Post" id="fullWidth" className={classes.textField}/>
       </div>
       <div>
-        <Button size="small" className={classes.btn}>Add</Button>
+        <Fab className={classes.add} size="small" color="primary" aria-label="add">
+          <h2>+</h2>
+        </Fab>
       </div>
       <div className={classes.post}>
         {postDataItem}
