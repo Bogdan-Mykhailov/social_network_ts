@@ -1,10 +1,19 @@
 .header {
     grid-area: h;
-    background-color: #AACFE3;
+    background-color: #3B4259;
     z-index: 100;
     box-shadow: 0 5px 8px -9px rgba(0,0,0,0.75);
+    border-radius: 10px;
 }
-
+.title {
+    color: #ADC5D9;
+    margin-top: -40px;
+    margin-left: 1090px;
+    font-size: 25px;
+    font-weight: 700;
+}
 .header img {
-    width: 60px;
+    width: 40px;
+    padding: 10px 20px 10px 20px;
+    border-radius: 40%;
 }

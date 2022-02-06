@@ -3,7 +3,6 @@
   display: grid;
   width: 1200px;
 
-
   grid-template-areas:
       'h h'
       'n c';
@@ -15,6 +14,6 @@
 
 .app-wrapper-content {
   grid-area: c;
-  background-color: #dea098;
-
+  background-color: #ADC5D9;
+  box-shadow: 0 5px 8px -9px rgba(0, 0, 0, 0.75);
 }

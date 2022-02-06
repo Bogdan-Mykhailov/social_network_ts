@@ -8,7 +8,6 @@ type MyPostsPropsType = {
   message: string,
   count: number,
 }
-
 type MyPostsProps = {
   data: MyPostsPropsType[]
 }
@@ -17,13 +16,15 @@ const MyPosts = (props: MyPostsProps) => {
   let postDataItem = props.data.map((i => <Post id={i.id} message={i.message} count={i.count}/>))
   return (
     <div>
-      <div>
-        <TextField label="Post" id="fullWidth" className={classes.textField}/>
-      </div>
-      <div>
-        <Fab className={classes.add} size="small" color="primary" aria-label="add">
-          <h2>+</h2>
-        </Fab>
+      <div className={classes.postsbar}>
+        <div className={classes.postbarInside}>
+          <div>
+            <input className={classes.input + ' ' + classes.active} type="text" placeholder='Post'/>
+          </div>
+          <div>
+            <button className={classes.add + ' ' + classes.active}>Add post</button>
+          </div>
+        </div>
       </div>
       <div className={classes.post}>
         {postDataItem}
