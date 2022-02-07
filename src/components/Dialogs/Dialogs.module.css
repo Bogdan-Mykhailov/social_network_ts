@@ -4,19 +4,11 @@
 }
 .dialogItems {
   padding: 10px;
-  color: white;
+  font-size: 18px;
+  font-weight: 300;
 }
 
 .dialogItems a {
   text-decoration: none;
-  color: white;
-}
-
-.dialogItems .active {
-  font-weight: bold;
-  color: black;
-}
-.messageItem {
-  padding: 10px;
-  color: white;
+  color: #3B4259;
 }

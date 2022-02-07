@@ -1,0 +1,57 @@
+.messages {
+  margin: 10px;
+}
+
+.messagesWrapper {
+  display: flex;
+  margin: 10px
+}
+.avatar img {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  margin: 25px 10px 0 10px;
+}
+
+.dialogWindow {
+  position: relative;
+  width: 250px;
+  height: 80px;
+  background-color: #07B0A5;
+  border-radius: 20px 20px 20px 0;
+}
+
+.dialogWindow::before {
+  content: "";
+  position: absolute;
+
+  bottom: 0;
+  height: 20px;
+  width: 35px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 20px 0 0 0 #07B0A5;
+  margin-left: -35px;
+  background-color: transparent;
+}
+.name {
+  font-size: 18px;
+  margin: 15px 0 0 25px;
+  display: block;
+  font-weight: bold;
+  color: black;
+}
+.message {
+  margin: 5px 5px 3px 25px;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 300;
+  color: red;
+}
+
+.time {
+  margin: -18px 0 0 190px;
+  display: block;
+  font-style: italic;
+  color: #04635D;
+  font-weight: 300;
+}

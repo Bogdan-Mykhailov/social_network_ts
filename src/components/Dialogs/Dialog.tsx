@@ -13,10 +13,10 @@ type DialogsPropsType = {
 const Dialog = (props: DialogsPropsType) => {
 
   let dialogsDataItem = props.dialogs.map(i =>
-    <DialogItem id={i.id} name={i.name}/>)
+    <DialogItem id={i.id} name={i.name} avatar={i.avatar}/>)
 
   let messageDataItem = props.messages.map(i =>
-    <Message id={i.id} message={i.message}/>)
+    <Message id={i.id} message={i.message} name={i.name} avatar={i.avatar} time={i.time}/>)
 
   return (
     <div className={classes.dialogs}>

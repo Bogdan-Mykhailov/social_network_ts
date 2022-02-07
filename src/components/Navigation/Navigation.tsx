@@ -1,26 +1,30 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import classes from './Navigation.module.css'
-import NawRow from "./NavRow";
+import NavRow from "./NavRow";
 import {
   MessageRounded,
   MusicNoteRounded,
   NewspaperRounded,
   SettingsRounded,
-  AccountCircle
+  AccountCircle,
+  PeopleAltRounded
 } from "@mui/icons-material";
+import Friends from "../Friends/Friends";
 
 const Navigation = () => {
   return (
     <nav className={classes.nav}>
-      <div>
-        <NawRow icon={<AccountCircle className={classes.icons} sx={{fontSize: 30}}/>} url='/profile' title='Profile'/>
-        <NawRow icon={<MessageRounded className={classes.icons} sx={{fontSize: 30}}/>} url='/dialogs' title='Messages'/>
-        <NawRow icon={<NewspaperRounded className={classes.icons} sx={{fontSize: 30}}/>} url='/news' title='News'/>
-        <NawRow icon={<MusicNoteRounded className={classes.icons} sx={{fontSize: 30}}/>} url='/music' title='Music'/>
-        <NawRow icon={<SettingsRounded className={classes.icons} sx={{fontSize: 30}}/>} url='/settings'
+        <NavRow icon={<AccountCircle className={classes.icons} sx={{fontSize: 30}}/>} url='/profile' title='Profile'/>
+        <NavRow icon={<MessageRounded className={classes.icons} sx={{fontSize: 30}}/>} url='/dialogs' title='Messages'/>
+        <NavRow icon={<PeopleAltRounded className={classes.icons} sx={{fontSize: 30}}/>}
+                url='/friends'
+                title='Friends'/>
+        <NavRow icon={<NewspaperRounded className={classes.icons} sx={{fontSize: 30}}/>} url='/news' title='News'/>
+        <NavRow icon={<MusicNoteRounded className={classes.icons} sx={{fontSize: 30}}/>} url='/music' title='Music'/>
+        <div className={classes.settings}><NavRow icon={<SettingsRounded className={classes.icons} sx={{fontSize: 30}}/>}  url='/settings'
                 title='Settings'/>
-      </div>
+        </div>
     </nav>
   )
 }

@@ -26,7 +26,7 @@
   cursor: pointer;
 }
 
-.active > .navbarTitle {
+.active .navbarTitle {
   color: #3B4259;
   font-weight: 700;
 }
@@ -47,5 +47,10 @@
 
 .container:hover .navbarItem {
   background-color: #6D86A6;
-  border-radius: 7px;
+  border-radius: 10px;
+  height: 40px;
+}
+
+.settings {
+  margin-top: 650px;
 }

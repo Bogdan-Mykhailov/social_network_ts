@@ -2,20 +2,22 @@ import {NavLink} from "react-router-dom";
 import classes from './Navigation.module.css'
 import React from "react";
 
-type NawRowPropsType = {
+type NavRowPropsType = {
   url: string,
   title: string,
-  icon: any
+  icon: JSX.Element
 }
 
-const NavRow = (props: NawRowPropsType) => {
+const NavRow = (props: NavRowPropsType) => {
   return (
     <div className={classes.container}>
-      <div className={classes.navbarItem}>
-        {props.icon}
-          <NavLink to={props.url} className={navData => navData.isActive ? `${classes.active} ${classes.item}` : classes.item}>
-        <h4 className={classes.navbarTitle}>{props.title}</h4></NavLink>
-      </div>
+      <NavLink to={props.url}
+               className={navData => navData.isActive ? `${classes.active} ${classes.item}` : classes.item}>
+        <div className={classes.navbarItem}>
+          {props.icon}
+          <h4 className={classes.navbarTitle}>{props.title}</h4>
+        </div>
+      </NavLink>
     </div>
   );
 };

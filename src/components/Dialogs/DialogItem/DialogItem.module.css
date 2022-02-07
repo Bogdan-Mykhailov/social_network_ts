@@ -1,0 +1,19 @@
+.avatarImg {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  margin: 5px;
+}
+
+.dialogs{
+  display: flex;
+  align-items: center;
+  color: #6D86A6;
+}
+
+.dialogs:hover  {
+  color: #6D86A6;
+  background-color: #3B4259;
+  border-radius: 10px;
+  height: 40px;
+}

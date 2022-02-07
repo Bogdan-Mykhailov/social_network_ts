@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './ProfileInfo.module.css'
 import photo from './photo.jpg'
+
 const ProfileInfo = () => {
   return (
     <div className={classes.container}>
