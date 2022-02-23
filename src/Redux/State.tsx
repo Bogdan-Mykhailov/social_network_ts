@@ -55,7 +55,7 @@ let state: RootStateType = {
       },
       {
         id: 2, name: 'Oliver',
-        message: 'How\'s the new coffe shop by you guys?',
+        message: 'How\'s the new coffe shop by you guys dljhfgsdhfs oisdfoshfskdhfr sdfosdfo shfdl sdhflk s sdfl jsldf  he new coffe shop by you guys dljhfgsdhfs oisdfoshfskdhfr sdfosdfo shfdl sdhflk s sdfl jsldfhe new coffe shop by you guys dljhfgsdhfs oisdfoshfskdhfr sdfosdfo shfdl sdhflk s sdfl jsldfhe new coffe shop by you guys dljhfgsdhfs oisdfoshfskdhfr sdfosdfo shfdl sdhflk s sdfl jsldfhe new coffe shop by you guys dljhfgsdhfs oisdfoshfskdhfr sdfosdfo shfdl sdhflk s sdfl jsldfhe new coffe shop by you guys dljhfgsdhfs oisdfoshfskdhfr sdfosdfo shfdl sdhflk s sdfl jsldfsdlf jsldf sdf ',
         avatar: 'https://cdn.pixabay.com/photo/2021/10/13/11/29/girl-6706267__340.jpg',
         time: '23:22'
       },
@@ -81,7 +81,8 @@ let state: RootStateType = {
       //   time: '14:57'
       // },
     ]
-  }
+  },
+  // sideBar{}
 }
 
 export default state;

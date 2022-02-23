@@ -9,7 +9,7 @@ import Music from "./components/Music/Music";
 import Settings from './components/Settings/Settings';
 import Friends from "./components/Friends/Friends";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {DialogsPageType, ProfilePageType} from "./redux/State";
+import {DialogsPageType, ProfilePageType} from "./Redux/State";
 
 type AppProps = {
   profilePage: ProfilePageType
@@ -18,7 +18,7 @@ type AppProps = {
 
 const App = (props: AppProps) => {
   return (
-    <BrowserRouter>
+
       <div className='app-wrapper'>
         <Header/>
         <Navigation/>
@@ -35,7 +35,7 @@ const App = (props: AppProps) => {
           </Routes>
         </div>
       </div>
-    </BrowserRouter>
+
   )
 }
 

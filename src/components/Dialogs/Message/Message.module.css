@@ -7,24 +7,25 @@
   margin: 10px
 }
 .avatar img {
+  display: inline-block;
   width: 50px;
   height: 50px;
   border-radius: 100%;
-  margin: 25px 10px 0 10px;
+  margin-top: 100%;
 }
 
 .dialogWindow {
-  position: relative;
-  width: 250px;
-  height: 80px;
+  min-height: 50px;
+  max-width: 470px;
   background-color: #07B0A5;
-  border-radius: 20px 20px 20px 0;
+  position: relative;
+  -webkit-border-radius: 20px 20px 20px 0;
+  margin-left: 10px;
 }
 
 .dialogWindow::before {
   content: "";
   position: absolute;
-
   bottom: 0;
   height: 20px;
   width: 35px;
@@ -32,7 +33,9 @@
   box-shadow: 20px 0 0 0 #07B0A5;
   margin-left: -35px;
   background-color: transparent;
+  border-top: 12px solid transparent;
 }
+
 .name {
   font-size: 18px;
   margin: 15px 0 0 25px;
@@ -45,13 +48,21 @@
   display: inline-block;
   font-size: 15px;
   font-weight: 300;
-  color: red;
+  color: snow;
+  max-width: 350px;
+  flex-basis: 50%;
+  margin-bottom: 15px;
+  padding-left: 5px;
+  padding-right: 10px;
 }
 
 .time {
-  margin: -18px 0 0 190px;
-  display: block;
+  display: inline-block;
+  flex-basis: 50%;
   font-style: italic;
   color: #04635D;
   font-weight: 300;
+  padding-right: 20px;
+
+
 }

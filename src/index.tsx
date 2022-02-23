@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import state from "./redux/State";
+import state from "./Redux/State";
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
-  <React.StrictMode>
+    <BrowserRouter>
     <App dialogsPage={state.dialogsPage} profilePage={state.profilePage}/>
-  </React.StrictMode>,
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
