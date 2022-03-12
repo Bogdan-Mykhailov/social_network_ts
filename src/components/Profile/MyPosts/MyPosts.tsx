@@ -22,7 +22,7 @@ const MyPosts = (props: MyPostsProps) => {
   let postMessageRef = React.createRef<HTMLTextAreaElement>()
 
   const onClickAddPostButtonHandler = () => {
-      props.addPost(props.newPostText)
+    props.addPost(props.newPostText)
     RerenderEntireTree(state)
   }
 
@@ -32,17 +32,18 @@ const MyPosts = (props: MyPostsProps) => {
     }
   }
 
-const onChangePostHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
+  const onChangePostHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
 
-      props.updateNewPostText(event.currentTarget.value)
+    props.updateNewPostText(event.currentTarget.value)
 
-}
+  }
   return (
     <div>
       <div className={classes.postsbar}>
         <div className={classes.postbarInside}>
           <div>
-            <textarea value={props.newPostText} onChange={onChangePostHandler} style={{resize: 'none'}} onKeyPress={onKeyPressHandler} ref={postMessageRef}
+            <textarea value={props.newPostText} onChange={onChangePostHandler} style={{resize: 'none'}}
+                      onKeyPress={onKeyPressHandler} ref={postMessageRef}
                       className={classes.textarea + ' ' + classes.active}/>
           </div>
           <div>
