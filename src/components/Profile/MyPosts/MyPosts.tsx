@@ -1,6 +1,8 @@
-import React from "react";
+import React , {KeyboardEvent} from "react";
 import classes from './MyPosts.module.css'
 import Post from "./Post/Post";
+import state from "../../../Redux/State";
+import { RerenderEntireTree } from "../../..";
 
 type MyPostsPropsType = {
   id: number,
@@ -9,6 +11,7 @@ type MyPostsPropsType = {
 }
 type MyPostsProps = {
   data: MyPostsPropsType[]
+  addPost: (postText: string) => void
 }
 
 const MyPosts = (props: MyPostsProps) => {
@@ -16,9 +19,11 @@ const MyPosts = (props: MyPostsProps) => {
 
   let postMessageRef = React.createRef<HTMLTextAreaElement>()
 
-
   const onClickAddPostButtonHandler = () => {
-    alert(postMessageRef.current?.value)
+    if (postMessageRef.current) {
+      props.addPost(postMessageRef.current.value)
+    }
+    RerenderEntireTree(state)
   }
 
   return (
@@ -26,7 +31,7 @@ const MyPosts = (props: MyPostsProps) => {
       <div className={classes.postsbar}>
         <div className={classes.postbarInside}>
           <div>
-            <textarea ref={postMessageRef} className={classes.textarea + ' ' + classes.active}></textarea>
+            <textarea  ref={postMessageRef} className={classes.textarea + ' ' + classes.active}></textarea>
           </div>
           <div>
             <button onClick={onClickAddPostButtonHandler} className={classes.add + ' ' + classes.active}>Add post

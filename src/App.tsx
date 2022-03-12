@@ -10,10 +10,12 @@ import Settings from './components/Settings/Settings';
 import Friends from "./components/Friends/Friends";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {DialogsPageType, ProfilePageType} from "./Redux/State";
+import {RootStateType} from "./Redux/State";
+import {addPost} from "./Redux/State";
 
 type AppProps = {
-  profilePage: ProfilePageType
-  dialogsPage: DialogsPageType
+  state: RootStateType
+  addPost: (postText: string) => void
 }
 
 const App = (props: AppProps) => {
@@ -24,10 +26,10 @@ const App = (props: AppProps) => {
         <Navigation/>
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path='/' element={<Profile posts={props.profilePage.postsData}/>}/>
-            <Route path='/profile/*' element={<Profile posts={props.profilePage.postsData}/>}/>
-            <Route path='/dialogs/*' element={<Dialog dialogs={props.dialogsPage.dialogsData}
-                                                      messages={props.dialogsPage.messageData}/>}/>
+            <Route path='/' element={<Profile posts={props.state.profilePage.postsData} addPost={props.addPost}/>}/>
+            <Route path='/profile/*' element={<Profile posts={props.state.profilePage.postsData} addPost={props.addPost}/>}/>
+            <Route path='/dialogs/*' element={<Dialog dialogs={props.state.dialogsPage.dialogsData}
+                                                      messages={props.state.dialogsPage.messageData}/>}/>
             <Route path='/news/*' element={<News/>}/>
             <Route path='/music/*' element={<Music/>}/>
             <Route path='/settings/*' element={<Settings/>}/>
@@ -40,3 +42,5 @@ const App = (props: AppProps) => {
 }
 
 export default App;
+
+

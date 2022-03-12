@@ -25,7 +25,7 @@ export type DialogsPageType = {
   messageData: MessagesDataType[]
 }
 
-type RootStateType = {
+export type RootStateType = {
   profilePage: ProfilePageType,
   dialogsPage: DialogsPageType
 }
@@ -59,30 +59,38 @@ let state: RootStateType = {
         avatar: 'https://cdn.pixabay.com/photo/2021/10/13/11/29/girl-6706267__340.jpg',
         time: '23:22'
       },
-      // {
-      //   id: 3,
-      //   name: 'Emma',
-      //   message: 'Call me back! 😘',
-      //   avatar: 'https://cdn.pixabay.com/photo/2021/10/13/11/29/girl-6706267__340.jpg',
-      //   time: '20:04'
-      // },
-      // {
-      //   id: 4,
-      //   name: 'Benjamin',
-      //   message: 'Party tonnight??? 🍸',
-      //   avatar: 'https://cdn.pixabay.com/photo/2021/10/13/11/29/girl-6706267__340.jpg',
-      //   time: '07:23'
-      // },
-      // {
-      //   id: 5,
-      //   name: 'Harper',
-      //   message: 'Thats sounds good. How is your Wednesday?',
-      //   avatar: 'https://cdn.pixabay.com/photo/2021/10/13/11/29/girl-6706267__340.jpg',
-      //   time: '14:57'
-      // },
+      {
+        id: 3,
+        name: 'Emma',
+        message: 'Call me back! 😘',
+        avatar: 'https://cdn.pixabay.com/photo/2021/10/13/11/29/girl-6706267__340.jpg',
+        time: '20:04'
+      },
+      {
+        id: 4,
+        name: 'Benjamin',
+        message: 'Party tonnight??? 🍸',
+        avatar: 'https://cdn.pixabay.com/photo/2021/10/13/11/29/girl-6706267__340.jpg',
+        time: '07:23'
+      },
+      {
+        id: 5,
+        name: 'Harper',
+        message: 'Thats sounds good. How is your Wednesday?',
+        avatar: 'https://cdn.pixabay.com/photo/2021/10/13/11/29/girl-6706267__340.jpg',
+        time: '14:57'
+      },
     ]
   },
   // sideBar{}
+}
+export const addPost = (postMessage: string | undefined) => {
+  const newPost: PostDataType = {
+    id: new Date().getTime(),
+    message: postMessage != null ? postMessage : '...',
+    count: 0
+  };
+  state.profilePage.postsData.push(newPost);
 }
 
 export default state;
