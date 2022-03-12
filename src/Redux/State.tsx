@@ -1,3 +1,5 @@
+import {RerenderEntireTree} from "../RerenderEntireTree";
+
 export type DialogsDataType = {
   id: number,
   name: string,
@@ -15,18 +17,16 @@ export type PostDataType = {
   message: string,
   count: number
 }
-
 export type ProfilePageType = {
   postsData: PostDataType[]
+  newPostText: string
 }
-
 export type DialogsPageType = {
   dialogsData: DialogsDataType[]
   messageData: MessagesDataType[]
 }
-
 export type RootStateType = {
-  profilePage: ProfilePageType,
+  profilePage: ProfilePageType
   dialogsPage: DialogsPageType
 }
 
@@ -35,7 +35,8 @@ let state: RootStateType = {
     postsData: [
       {id: 1, message: 'ABM corporation got a 450 bln dollars from Meta company.', count: 14515},
       {id: 2, message: 'Bogdan, Andrii and Maryna create ABM corporation in 2021', count: 224513445}
-    ]
+    ],
+    newPostText: ''
   },
   dialogsPage: {
     dialogsData: [
@@ -84,13 +85,20 @@ let state: RootStateType = {
   },
   // sideBar{}
 }
-export const addPost = (postMessage: string | undefined) => {
+export const addPost = (postText: string) => {
   const newPost: PostDataType = {
     id: new Date().getTime(),
-    message: postMessage != null ? postMessage : '...',
+    message: postText,
     count: 0
   };
   state.profilePage.postsData.push(newPost);
+  state.profilePage.newPostText = ''
+  RerenderEntireTree(state)
+}
+
+export const updateNewPostText = (newText: string) => {
+  state.profilePage.newPostText = newText;
+  RerenderEntireTree(state)
 }
 
 export default state;
