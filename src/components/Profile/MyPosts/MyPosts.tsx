@@ -1,8 +1,8 @@
-import React , {KeyboardEvent} from "react";
+import React, {KeyboardEvent} from "react";
 import classes from './MyPosts.module.css'
 import Post from "./Post/Post";
 import state from "../../../Redux/State";
-import { RerenderEntireTree } from "../../..";
+import {RerenderEntireTree} from "../../../RerenderEntireTree";
 
 type MyPostsPropsType = {
   id: number,
@@ -22,8 +22,15 @@ const MyPosts = (props: MyPostsProps) => {
   const onClickAddPostButtonHandler = () => {
     if (postMessageRef.current) {
       props.addPost(postMessageRef.current.value)
+      postMessageRef.current.value = ''
     }
     RerenderEntireTree(state)
+  }
+
+  const onKeyPressHandler = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === 'Enter') {
+      onClickAddPostButtonHandler()
+    }
   }
 
   return (
@@ -31,7 +38,8 @@ const MyPosts = (props: MyPostsProps) => {
       <div className={classes.postsbar}>
         <div className={classes.postbarInside}>
           <div>
-            <textarea  ref={postMessageRef} className={classes.textarea + ' ' + classes.active}></textarea>
+            <textarea style={{resize: 'none'}} onKeyPress={onKeyPressHandler} ref={postMessageRef}
+                      className={classes.textarea + ' ' + classes.active}></textarea>
           </div>
           <div>
             <button onClick={onClickAddPostButtonHandler} className={classes.add + ' ' + classes.active}>Add post
@@ -45,4 +53,5 @@ const MyPosts = (props: MyPostsProps) => {
     </div>
   )
 }
+
 export default MyPosts;
