@@ -22,7 +22,6 @@ type AppProps = {
 
 const App = (props: AppProps) => {
   return (
-
       <div className='app-wrapper'>
         <Header/>
         <Navigation/>

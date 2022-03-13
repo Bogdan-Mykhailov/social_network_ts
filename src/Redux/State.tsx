@@ -1,4 +1,10 @@
-import {RerenderEntireTree} from "../RerenderEntireTree";
+let onChange = () => {
+  console.log('State Changed')
+}
+
+export const subscribe = (callBack: () => void ) => {
+  onChange = callBack;
+}
 
 export type DialogsDataType = {
   id: number,
@@ -85,6 +91,7 @@ let state: RootStateType = {
   },
   // sideBar{}
 }
+
 export const addPost = (postText: string) => {
   const newPost: PostDataType = {
     id: new Date().getTime(),
@@ -93,12 +100,11 @@ export const addPost = (postText: string) => {
   };
   state.profilePage.postsData.push(newPost);
   state.profilePage.newPostText = ''
-  RerenderEntireTree(state)
+  onChange();
 }
-
 export const updateNewPostText = (newText: string) => {
   state.profilePage.newPostText = newText;
-  RerenderEntireTree(state)
+  onChange();
 }
 
 export default state;
