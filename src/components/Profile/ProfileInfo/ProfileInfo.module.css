@@ -1,4 +1,6 @@
 .container {
+  grid-area: c;
+  background-color: #04635D;
   display: flex;
   align-items: center;
   flex-direction: column;

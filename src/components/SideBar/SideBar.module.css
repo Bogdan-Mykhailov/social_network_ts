@@ -1,0 +1,21 @@
+.sideBar {
+  grid-area: s;
+  background-color: #ADC5D9;
+  z-index: 100;
+  box-shadow: 0 5px 8px -9px rgba(0, 0, 0, 0.75);
+  padding: 10px 2px;
+}
+.sideBar {
+  background-color: #04635D;
+}
+
+.avatar {
+  display: inline-block;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+.contactName {
+  display: inline-block;
+}

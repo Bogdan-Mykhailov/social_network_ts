@@ -12,6 +12,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {ActionsTypes, DialogsPageType, ProfilePageType, StoreType} from "./Redux/State";
 import {RootStateType} from "./Redux/State";
 import store from "./Redux/State";
+import {SideBar} from "./components/SideBar/SideBar";
 
 type AppProps = {
   store: StoreType
@@ -24,6 +25,7 @@ const App = (props: AppProps) => {
   return (
       <div className='app-wrapper'>
         <Header/>
+        <SideBar contactsData={props.store._state.dialogsPage.dialogsData}/>
         <Navigation/>
         <div className='app-wrapper-content'>
           <Routes>
@@ -40,6 +42,7 @@ const App = (props: AppProps) => {
             <Route path='/settings/*' element={<Settings/>}/>
             <Route path='/friends/*' element={<Friends/>}/>
           </Routes>
+
         </div>
       </div>
 

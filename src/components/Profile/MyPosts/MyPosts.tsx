@@ -31,7 +31,7 @@ const MyPosts = (props: MyPostsProps) => {
   }
 
   return (
-    <div>
+    <div className={classes.wraper}>
       <div className={classes.postsbar}>
         <div className={classes.postbarInside}>
           <div>

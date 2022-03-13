@@ -1,3 +1,9 @@
+.wraper {
+  grid-area: p;
+  background-color: #04635D;
+}
+
+
 .postsbar {
   margin-top: 5px;
   background-color: #6D86A6;
@@ -5,6 +11,7 @@
   width: 1028px;
   height: 133px;
   padding: 3px;
+  margin: 5px auto;
 }
 
 .textarea {
@@ -46,8 +53,8 @@
 }
 
 .post {
-  margin-top: 5px;
-  background-color: #ADC5D9;
+  margin: 5px auto;
+  background-color: #6D86A6;
   border-radius: 10px ;
   width: 1034px;
 }
