@@ -9,14 +9,14 @@ import Music from "./components/Music/Music";
 import Settings from './components/Settings/Settings';
 import Friends from "./components/Friends/Friends";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {DialogsPageType, ProfilePageType} from "./Redux/State";
+import {ActionsTypes, DialogsPageType, ProfilePageType, StoreType} from "./Redux/State";
 import {RootStateType} from "./Redux/State";
-import {addPost} from "./Redux/State";
+import store from "./Redux/State";
 
 type AppProps = {
+  store: StoreType
   state: RootStateType
-  addPost: (postText: string) => void
-  updateNewPostText: (newPostText: string) => void
+  dispatch: (action: ActionsTypes) => void
   newPostText: string
 }
 
@@ -27,8 +27,12 @@ const App = (props: AppProps) => {
         <Navigation/>
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path='/' element={<Profile posts={props.state.profilePage.postsData} newPostText={props.state.profilePage.newPostText} addPost={props.addPost} updateNewPostText={props.updateNewPostText}/>}/>
-            <Route path='/profile/*' element={<Profile posts={props.state.profilePage.postsData} newPostText={props.state.profilePage.newPostText} addPost={props.addPost}  updateNewPostText={props.updateNewPostText}/>}/>
+            <Route path='/*' element={<Profile posts={props.state.profilePage.postsData}
+                                              newPostText={props.state.profilePage.newPostText}
+                                              dispatch={props.store.dispatch.bind(props.store)}/>}/>
+            <Route path='/profile/*' element={<Profile posts={props.state.profilePage.postsData}
+                                                       newPostText={props.state.profilePage.newPostText}
+                                                       dispatch={props.store.dispatch.bind(props.store)}/>}/>
             <Route path='/dialogs/*' element={<Dialog dialogs={props.state.dialogsPage.dialogsData}
                                                       messages={props.state.dialogsPage.messageData}/>}/>
             <Route path='/news/*' element={<News/>}/>

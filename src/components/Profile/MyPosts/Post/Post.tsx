@@ -11,10 +11,10 @@ type PostPropsType = {
 const Post = (props: PostPropsType) => {
   return (
     <div className={classes.item}>
-      <img src={user} alt="user"/>
+      <img className={classes.postUserImg} src={user} alt="user"/>
       {props.message}
       <div>
-        <span>👍🏼</span>
+        <span className={classes.like}>👍🏼</span>
         {props.count}
       </div>
     </div>

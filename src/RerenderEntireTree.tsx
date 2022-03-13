@@ -1,17 +1,19 @@
-import {addPost, RootStateType, updateNewPostText} from "./Redux/State";
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 import React from "react";
-import state from "./Redux/State";
+import store from "./Redux/State";
 
 export const RerenderEntireTree = () => {
   ReactDOM.render(
     <BrowserRouter>
-      <App newPostText={state.profilePage.newPostText} state={state} addPost={addPost}
-           updateNewPostText={updateNewPostText}/>
+      <App store={store}
+           state={store.getState()}
+           dispatch={store.dispatch.bind(store)}
+           newPostText={store.getState().profilePage.newPostText}/>
     </BrowserRouter>,
     document.getElementById('root')
   );
 }
+
 RerenderEntireTree()
