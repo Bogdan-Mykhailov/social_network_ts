@@ -8,10 +8,7 @@ export const RerenderEntireTree = () => {
   ReactDOM.render(
     <BrowserRouter>
       <App store={store}
-           state={store.getState()}
-           dispatch={store.dispatch.bind(store)}
-           newPostText={store.getState().profilePage.newPostText}
-      />
+           dispatch={store.dispatch.bind(store)}/>
     </BrowserRouter>,
     document.getElementById('root')
   );
