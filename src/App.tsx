@@ -23,29 +23,37 @@ type AppProps = {
 
 const App = (props: AppProps) => {
   return (
-      <div className='app-wrapper'>
-        <Header/>
-        <SideBar contactsData={props.store._state.dialogsPage.dialogsData}/>
-        <Navigation/>
-        <div className='app-wrapper-content'>
-          <Routes>
-            <Route path='/*' element={<Profile posts={props.state.profilePage.postsData}
-                                              newPostText={props.state.profilePage.newPostText}
-                                              dispatch={props.store.dispatch.bind(props.store)}/>}/>
-            <Route path='/profile/*' element={<Profile posts={props.state.profilePage.postsData}
-                                                       newPostText={props.state.profilePage.newPostText}
-                                                       dispatch={props.store.dispatch.bind(props.store)}/>}/>
-            <Route path='/dialogs/*' element={<Dialog dialogs={props.state.dialogsPage.dialogsData}
-                                                      messages={props.state.dialogsPage.messageData}/>}/>
-            <Route path='/news/*' element={<News/>}/>
-            <Route path='/music/*' element={<Music/>}/>
-            <Route path='/settings/*' element={<Settings/>}/>
-            <Route path='/friends/*' element={<Friends/>}/>
-          </Routes>
+    <div className='app-wrapper'>
+      <Header/>
+      <SideBar contactsData={props.store.getState().dialogsPage.dialogsData}/>
+      <Navigation/>
+      <div className='app-wrapper-content'>
+        <Routes>
+          <Route path='/*' element={<Profile posts={props.state.profilePage.postsData}
+                                             newPostText={props.state.profilePage.newPostText}
+                                             dispatch={props.store.dispatch.bind(props.store)}/>}/>
 
-        </div>
+          <Route path='/profile/*' element={<Profile posts={props.state.profilePage.postsData}
+                                                     newPostText={props.state.profilePage.newPostText}
+                                                     dispatch={props.store.dispatch.bind(props.store)}/>}/>
+
+          <Route path='/dialogs/*' element={<Dialog dialogs={props.state.dialogsPage.dialogsData}
+                                                    messages={props.state.dialogsPage.messageData}
+                                                    newMessage={props.state.dialogsPage.newMessage}
+                                                    dispatch={props.store.dispatch.bind(props.store)}
+
+          />}/>
+          <Route path='/news/*'
+                 element={<News/>}/>
+          <Route path='/music/*'
+                 element={<Music/>}/>
+          <Route path='/settings/*'
+                 element={<Settings/>}/>
+          <Route path='/friends/*'
+                 element={<Friends/>}/>
+        </Routes>
       </div>
-
+    </div>
   )
 }
 

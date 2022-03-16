@@ -1,13 +1,23 @@
-import React from "react";
+import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 import {NavLink} from "react-router-dom";
 import classes from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from './Message/Message'
-import { DialogsDataType, MessagesDataType } from "../../Redux/State";
+import {
+  ActionsTypes,
+  addMessageAC,
+  addPostAC,
+  DialogsDataType,
+  MessagesDataType,
+  updateNewMessageTextAC,
+  updateNewPostTextAC
+} from "../../Redux/State";
 
 type DialogsPropsType = {
   dialogs: DialogsDataType[]
   messages: MessagesDataType[]
+  dispatch: (action: ActionsTypes) => void
+  newMessage: string
 }
 
 const Dialog = (props: DialogsPropsType) => {
@@ -17,6 +27,20 @@ const Dialog = (props: DialogsPropsType) => {
 
   let messageDataItem = props.messages.map(i =>
     <Message id={i.id} message={i.message} name={i.name} avatar={i.avatar} time={i.time}/>)
+
+
+  const onClickAddPostButtonHandler = () => {
+    return props.dispatch(addMessageAC())
+  }
+  const onKeyPressHandler = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === 'Enter') {
+      onClickAddPostButtonHandler()
+    }
+  }
+  const onChangePostHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    return  props.dispatch(updateNewMessageTextAC(event.currentTarget.value))
+  }
+
 
   return (
     <div className={classes.dialogs}>
@@ -28,6 +52,20 @@ const Dialog = (props: DialogsPropsType) => {
           {messageDataItem}
         </div>
       </div>
+
+      <div>
+            <textarea value={props.newMessage}
+                      onChange={onChangePostHandler}
+                      style={{resize: 'none'}}
+                      onKeyPress={onKeyPressHandler}
+                      className={classes.textarea + ' ' + classes.active}/>
+      </div>
+      <div>
+        <button onClick={onClickAddPostButtonHandler} className={classes.add + ' ' + classes.active}>Add post
+        </button>
+      </div>
+
+
     </div>
   );
 }

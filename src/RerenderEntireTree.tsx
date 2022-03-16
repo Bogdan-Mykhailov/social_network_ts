@@ -10,7 +10,8 @@ export const RerenderEntireTree = () => {
       <App store={store}
            state={store.getState()}
            dispatch={store.dispatch.bind(store)}
-           newPostText={store.getState().profilePage.newPostText}/>
+           newPostText={store.getState().profilePage.newPostText}
+      />
     </BrowserRouter>,
     document.getElementById('root')
   );

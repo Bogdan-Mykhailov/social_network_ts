@@ -1,7 +1,9 @@
+import {strict} from "assert";
+
 export type DialogsDataType = {
   id: number,
   name: string,
-  avatar: string
+  avatar: string,
 }
 export type MessagesDataType = {
   id: number,
@@ -22,6 +24,7 @@ export type ProfilePageType = {
 export type DialogsPageType = {
   dialogsData: DialogsDataType[]
   messageData: MessagesDataType[]
+  newMessage: string
 }
 export type RootStateType = {
   profilePage: ProfilePageType
@@ -37,16 +40,34 @@ export type StoreType = {
 }
 
 export type ActionsTypes =
-  AddPostActionType |
-  UpdatePostActionType
+  ReturnType<typeof addPostAC> |
+  ReturnType<typeof updateNewPostTextAC> |
+  ReturnType<typeof addMessageAC> |
+  ReturnType<typeof updateNewMessageTextAC>
 
-type AddPostActionType = {
-  type: 'ADD-POST'
-  postText: string
+export const addPostAC = () => {
+  return {
+    type: "ADD-POST"
+  } as const
 }
-type UpdatePostActionType = {
-  type: 'UPDATE-NEW-POST-TEXT'
-  newText: string
+export const updateNewPostTextAC = (newText: string) => {
+  return {
+    type: "UPDATE-NEW-POST-TEXT",
+    newText: newText
+  } as const
+}
+
+export const addMessageAC = () => {
+  return {
+    type: "ADD-MESSAGE"
+  } as const
+}
+
+export const updateNewMessageTextAC = (newMessage: string) => {
+  return {
+    type: "UPDATE-NEW-MESSAGE-TEXT",
+    newMessage: newMessage
+  } as const
 }
 
 const store: StoreType = {
@@ -102,7 +123,8 @@ const store: StoreType = {
           avatar: 'https://cdn.pixabay.com/photo/2021/10/13/11/29/girl-6706267__340.jpg',
           time: '14:57'
         },
-      ]
+      ],
+      newMessage: '',
     },
     // sideBar{}
   },
@@ -123,14 +145,32 @@ const store: StoreType = {
     if (action.type === 'ADD-POST') {
       const newPost: PostDataType = {
         id: new Date().getTime(),
-        message: action.postText,
+        message: this._state.profilePage.newPostText,
         count: 0
       };
       this._state.profilePage.postsData.push(newPost);
       this._state.profilePage.newPostText = ''
       this._onChange();
-    } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+    }
+    else if (action.type === 'UPDATE-NEW-POST-TEXT') {
       this._state.profilePage.newPostText = action.newText;
+      this._onChange();
+    }
+
+    else if (action.type === "ADD-MESSAGE") {
+      const newMessage: MessagesDataType = {
+        id: new Date().getTime(),
+        message: this._state.dialogsPage.newMessage,
+        name: '',
+        avatar: '',
+        time: ''
+      };
+      this._state.dialogsPage.messageData.push(newMessage);
+      this._state.dialogsPage.newMessage = ''
+      this._onChange();
+    }
+    else if (action.type === "UPDATE-NEW-MESSAGE-TEXT") {
+      this._state.dialogsPage.newMessage = action.newMessage;
       this._onChange();
     }
   }

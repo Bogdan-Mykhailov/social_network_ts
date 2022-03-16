@@ -1,7 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
 import classes from './MyPosts.module.css'
 import Post from "./Post/Post";
-import state, {ActionsTypes} from "../../../Redux/State";
+import state, {ActionsTypes, addPostAC, updateNewPostTextAC} from "../../../Redux/State";
 import {RerenderEntireTree} from "../../../RerenderEntireTree";
 
 type MyPostsPropsType = {
@@ -18,8 +18,7 @@ type MyPostsProps = {
 const MyPosts = (props: MyPostsProps) => {
   let postDataItem = props.data.map(i => <Post id={i.id} message={i.message} count={i.count}/>)
   const onClickAddPostButtonHandler = () => {
-    props.dispatch({type: "ADD-POST", postText: props.newPostText})
-    RerenderEntireTree()
+    return props.dispatch(addPostAC())
   }
   const onKeyPressHandler = (event: KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === 'Enter') {
@@ -27,7 +26,7 @@ const MyPosts = (props: MyPostsProps) => {
     }
   }
   const onChangePostHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    props.dispatch({type: "UPDATE-NEW-POST-TEXT", newText: event.currentTarget.value})
+    return  props.dispatch(updateNewPostTextAC(event.currentTarget.value))
   }
 
   return (
