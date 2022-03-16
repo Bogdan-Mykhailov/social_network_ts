@@ -40,6 +40,7 @@ const MyPosts = (props: MyPostsProps) => {
                       onKeyPress={onKeyPressHandler}
                       className={classes.textarea + ' ' + classes.active}/>
           </div>
+
           <div>
             <button onClick={onClickAddPostButtonHandler} className={classes.add + ' ' + classes.active}>Add post
             </button>
