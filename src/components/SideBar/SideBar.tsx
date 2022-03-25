@@ -2,7 +2,6 @@ import React from 'react';
 import classes from './SideBar.module.css'
 import {DialogsDataType} from "../../Redux/Store";
 
-
 type SideBarPropsType = {
   contactsData: DialogsDataType[]
 }
@@ -20,8 +19,7 @@ export const SideBar = (props: SideBarPropsType) => {
                src={c.avatar} alt="avatarka"/>
           <h4 className={classes.contactName}>{c.name}</h4>
         </div>
-      )
-      }
+      )}
     </div>
   );
 };
