@@ -1,17 +1,75 @@
-.item {
-    color: white;
-    font-weight: bold;
+.wrapper {
+  color: white;
+  font-weight: bold;
 }
 
-.item img {
-    width: 35px;
-    padding: 0 10px 0 0;
+.postItem {
+  padding: 15px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.imgWrapper {
+  display: inline-block;
 }
 
 .postUserImg {
-    margin-top: 20px;
+  border-radius: 100%;
+  height: 60px;
+  width: 60px;
 }
 
-.like {
-    margin: 10px;
+.name {
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  padding: 20px 20px 0 20px ;
+  margin-left: 20px;
+}
+
+.postText {
+  display: inline-block;
+  max-width: 700px;
+  min-height: 100px;
+  background-color: #3B4259;
+  position: relative;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.text {
+  font-style: italic;
+  font-style: 15px;
+  font-weight: 300;
+  max-width: 600px;
+  padding: 20px;
+}
+
+hr {
+  border: 1px solid #3B4259;
+  margin-top: 2px;
+}
+
+.likeIcons {
+  margin: 5px;
+  width: 170px;
+  justify-content: space-around;
+  display: flex;
+}
+
+.likeWrapper {
+  display: inline-block;
+  align-items: flex-end;
+  font-weight: 300;
+  margin-left: 100px;
+}
+
+.count {
+  margin: 5px;
+}
+
+.time {
+  font-style: italic;
+  font-weight: 300;
+  margin: 7px;
 }

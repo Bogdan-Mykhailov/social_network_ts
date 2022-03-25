@@ -10,7 +10,7 @@ export const SideBar = (props: SideBarPropsType) => {
   return (
     <div className={classes.sideBar}>
 
-      <div className={classes.contacts}><h4>Contacts</h4></div>
+      <div className={classes.contactsTitle}><h4>Contacts</h4></div>
 
       {props.contactsData.map(c => <div
           key={c.id}

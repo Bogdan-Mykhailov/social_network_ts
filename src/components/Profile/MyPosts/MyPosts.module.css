@@ -1,22 +1,19 @@
 .wraper {
   grid-area: p;
-  background-color: #04635D;
 }
 
-
 .postsbar {
-  margin-top: 5px;
   background-color: #6D86A6;
-  border-radius: 10px;
-  width: 1028px;
-  height: 133px;
+  width: 1050px;
+  height: 140px;
   padding: 3px;
-  margin: 5px auto;
+  margin:  5px auto 0;
+  border-radius: 5px;
 }
 
 .textarea {
-  margin: 10px;
-  width: 300px;
+  margin: 20px;
+  width: 400px;
   padding: 5px;
   border-radius: 5px;
   border: none;
@@ -44,7 +41,7 @@
   box-shadow: 0 5px 8px -9px rgba(0, 0, 0, 0.75);
   color: #ADC5D9;
   margin-bottom: 8px;
-  margin-left: 220px;
+  margin-left: 320px;
 }
 
 .add:hover  {
@@ -53,8 +50,8 @@
 }
 
 .post {
-  margin: 5px auto;
+  margin: 0 auto 15px;
   background-color: #6D86A6;
-  border-radius: 10px ;
-  width: 1034px;
+  width: 900px;
+  padding: 10px;
 }

@@ -5,7 +5,7 @@
 .messagesWrapper {
   display: flex;
   margin: 10px;
-  align-items: end;
+  align-items: flex-end;
 }
 
 .avatar img {

@@ -28,6 +28,7 @@ export const profileReducer = (state: ProfilePageType, action: ActionsTypes) => 
     case "ADD-POST": {
       const newPost: PostDataType = {
         id: new Date().getTime(),
+        name: 'Neo',
         message: action.postText,
         count: 0,
         time: realTime

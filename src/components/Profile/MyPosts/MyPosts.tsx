@@ -6,9 +6,10 @@ import {RerenderEntireTree} from "../../../RerenderEntireTree";
 import { ActionsTypes, addPostAC, updatePostAC } from "../../../Redux/profile-reducer";
 
 type MyPostsPropsType = {
-  id: number,
-  message: string,
-  count: number,
+  id: number
+  name: string
+  message: string
+  count: number
   time: string
 }
 type MyPostsProps = {
@@ -18,7 +19,7 @@ type MyPostsProps = {
 }
 
 const MyPosts = (props: MyPostsProps) => {
-  let postDataItem = props.data.map(i => <Post key={i.id} id={i.id} message={i.message} count={i.count} time={i.time}/>)
+  let postDataItem = props.data.map(i => <Post key={i.id} id={i.id} name={i.name} message={i.message} count={i.count} time={i.time}/>)
   const onClickAddPostButtonHandler = () => {
     props.dispatch(addPostAC(props.newPostText))
     RerenderEntireTree()

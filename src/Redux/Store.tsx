@@ -15,6 +15,7 @@ export type MessagesDataType = {
 }
 export type PostDataType = {
   id: number,
+  name: string
   message: string,
   count: number
   time: string
@@ -45,8 +46,8 @@ const store: StoreType = {
   _state: {
     profilePage: {
       postsData: [
-        {id: 1, message: 'ABM corporation got a 450 bln dollars from Meta company.', count: 14515, time: '12:00'},
-        {id: 2, message: 'Bogdan, Andrii and Maryna create ABM corporation in 2021', count: 224513445, time: '12:00'}
+        {id: 1, name: 'Neo', message: 'London is the capital of Great Britain, its political, economic and cultural centre.', count: 14515, time: '12:00'},
+        {id: 2, name: 'Neo', message: 'Русский военный корабль, иди нахуй! 🖕🏻', count: 22563, time: '12:00'}
       ],
       newPostText: ''
     },

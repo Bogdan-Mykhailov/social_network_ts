@@ -6,7 +6,7 @@
   padding: 10px 2px;
 }
 .sideBar {
-  background-color: #04635D;
+
 }
 
 .avatar {
@@ -16,6 +16,15 @@
   width: 50px;
 }
 
+.contactsTitle {
+  font-size: 40px;
+  color: #3B4259;
+}
+
 .contactName {
   display: inline-block;
+}
+
+.contacts {
+  color: #3B4259;
 }
