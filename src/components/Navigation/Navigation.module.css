@@ -38,7 +38,6 @@
 
 .container:hover .icons {
   color: #3B4259;
-  margin-left: 20px;
 }
 
 .container:hover .navbarTitle {
@@ -51,6 +50,3 @@
   height: 40px;
 }
 
-.settings {
-  margin-top: 600px;
-}

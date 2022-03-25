@@ -1,13 +1,15 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
 import classes from './MyPosts.module.css'
 import Post from "./Post/Post";
-import state, {ActionsTypes} from "../../../Redux/State";
+import state from "../../../Redux/Store";
 import {RerenderEntireTree} from "../../../RerenderEntireTree";
+import { ActionsTypes, addPostAC, updatePostAC } from "../../../Redux/profile-reducer";
 
 type MyPostsPropsType = {
   id: number,
   message: string,
   count: number,
+  time: string
 }
 type MyPostsProps = {
   data: MyPostsPropsType[]
@@ -16,9 +18,9 @@ type MyPostsProps = {
 }
 
 const MyPosts = (props: MyPostsProps) => {
-  let postDataItem = props.data.map(i => <Post id={i.id} message={i.message} count={i.count}/>)
+  let postDataItem = props.data.map(i => <Post key={i.id} id={i.id} message={i.message} count={i.count} time={i.time}/>)
   const onClickAddPostButtonHandler = () => {
-    props.dispatch({type: "ADD-POST", postText: props.newPostText})
+    props.dispatch(addPostAC(props.newPostText))
     RerenderEntireTree()
   }
   const onKeyPressHandler = (event: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -27,7 +29,7 @@ const MyPosts = (props: MyPostsProps) => {
     }
   }
   const onChangePostHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    props.dispatch({type: "UPDATE-NEW-POST-TEXT", newText: event.currentTarget.value})
+    props.dispatch(updatePostAC(event.currentTarget.value))
   }
 
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './SideBar.module.css'
-import {DialogsDataType} from "../../Redux/State";
+import {DialogsDataType} from "../../Redux/Store";
 
 
 type SideBarPropsType = {

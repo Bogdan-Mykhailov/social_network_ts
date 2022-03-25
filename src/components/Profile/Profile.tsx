@@ -2,8 +2,10 @@ import React from "react";
 import classes from './Profile.module.css'
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {ActionsTypes, PostDataType} from "../../Redux/State";
-import store from "../../Redux/State";
+import {PostDataType} from "../../Redux/Store";
+import store from "../../Redux/Store";
+import { ActionsTypes } from "../../Redux/profile-reducer";
+
 
 
 type ProfilePropsType = {

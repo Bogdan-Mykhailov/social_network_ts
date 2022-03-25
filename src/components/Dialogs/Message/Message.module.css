@@ -4,14 +4,14 @@
 
 .messagesWrapper {
   display: flex;
-  margin: 10px
+  margin: 10px;
+  align-items: end;
 }
+
 .avatar img {
-  display: inline-block;
   width: 50px;
   height: 50px;
   border-radius: 100%;
-  margin-top: 100%;
 }
 
 .dialogWindow {
@@ -19,7 +19,7 @@
   max-width: 470px;
   background-color: #07B0A5;
   position: relative;
-  -webkit-border-radius: 20px 20px 20px 0;
+  border-radius: 20px 20px 20px 0;
   margin-left: 10px;
 }
 
@@ -41,8 +41,9 @@
   margin: 15px 0 0 25px;
   display: block;
   font-weight: bold;
-  color: black;
+  color: #3B4259;
 }
+
 .message {
   margin: 5px 5px 3px 25px;
   display: inline-block;
@@ -63,6 +64,4 @@
   color: #04635D;
   font-weight: 300;
   padding-right: 20px;
-
-
 }

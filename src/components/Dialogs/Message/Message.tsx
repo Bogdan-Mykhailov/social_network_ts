@@ -1,6 +1,6 @@
 import classes from './Message.module.css'
 import React from "react";
-import {MessagesDataType} from "../../../Redux/State";
+import {MessagesDataType} from "../../../Redux/Store";
 import {NavLink} from "react-router-dom";
 
 const Message = (props: MessagesDataType) => {

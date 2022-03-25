@@ -22,9 +22,8 @@ const Navigation = () => {
                 title='Friends'/>
         <NavRow icon={<NewspaperRounded className={classes.icons} sx={{fontSize: 30}}/>} url='/news' title='News'/>
         <NavRow icon={<MusicNoteRounded className={classes.icons} sx={{fontSize: 30}}/>} url='/music' title='Music'/>
-        <div className={classes.settings}><NavRow icon={<SettingsRounded className={classes.icons} sx={{fontSize: 30}}/>}  url='/settings'
+        <NavRow icon={<SettingsRounded className={classes.icons} sx={{fontSize: 30}}/>}  url='/settings'
                 title='Settings'/>
-        </div>
     </nav>
   )
 }

@@ -6,6 +6,7 @@ type PostPropsType = {
   id: number,
   message: string,
   count: number,
+  time: string
 }
 
 const Post = (props: PostPropsType) => {
@@ -16,6 +17,7 @@ const Post = (props: PostPropsType) => {
       <div>
         <span className={classes.like}>👍🏼</span>
         {props.count}
+        <div>{props.time}</div>
       </div>
     </div>
   )
