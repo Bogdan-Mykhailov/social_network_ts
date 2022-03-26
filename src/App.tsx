@@ -28,17 +28,17 @@ const App = (props: AppProps) => {
         <Navigation/>
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path='/profile/*' element={<Profile posts={props.store.getState().profilePage.postsData}
+            <Route path='/profile' element={<Profile posts={props.store.getState().profilePage.postsData}
                                                        newPostText={props.store.getState().profilePage.newPostText}
                                                        dispatch={props.store.dispatch.bind(props.store)}/>}/>
-            <Route path='/dialogs/*' element={<Dialog dialogs={props.store.getState().dialogsPage.dialogsData}
+            <Route path='/dialogs' element={<Dialog dialogs={props.store.getState().dialogsPage.dialogsData}
                                                       messages={props.store.getState().dialogsPage.messageData}
                                                       newMessageText={props.store.getState().dialogsPage.newMessageText}
                                                       dispatch={props.store.dispatch.bind(props.store)}/>}/>
-            <Route path='/news/*' element={<News/>}/>
-            <Route path='/music/*' element={<Music/>}/>
-            <Route path='/settings/*' element={<Settings/>}/>
-            <Route path='/friends/*' element={<Friends/>}/>
+            <Route path='/news' element={<News/>}/>
+            <Route path='/music' element={<Music/>}/>
+            <Route path='/settings' element={<Settings/>}/>
+            <Route path='/friends' element={<Friends/>}/>
           </Routes>
         </div>
       </div>

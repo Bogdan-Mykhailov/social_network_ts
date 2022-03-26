@@ -43,6 +43,7 @@
   font-weight: 300;
   max-width: 600px;
   padding: 20px;
+  word-wrap: break-word;
 }
 
 hr {
