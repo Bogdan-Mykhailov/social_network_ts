@@ -8,7 +8,7 @@ const ProfileInfo = () => {
 
       <div className={classes.wallpaper}>
         <img
-          src="https://cdn.pixabay.com/photo/2018/09/19/23/03/sunset-3689760_1280.jpg"/>
+          src="https://cdn.pixabay.com/photo/2017/08/30/12/44/ukraine-2696944_960_720.jpg"/>
       </div>
 
       <div className={classes.avatar}>

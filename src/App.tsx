@@ -3,7 +3,7 @@ import './App.css';
 import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation"
 import Profile from './components/Profile/Profile'
-import Dialog from "./components/Dialogs/Dialog";
+import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from './components/Settings/Settings';
@@ -14,9 +14,11 @@ import {RootStateType} from "./Redux/Store";
 import store from "./Redux/Store";
 import {SideBar} from "./components/SideBar/SideBar";
 import { ActionsTypes } from './Redux/profile-reducer';
+import {StoreTypeRedux} from "./Redux/redux-store";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 type AppProps = {
-  store: StoreType
+  store: StoreTypeRedux
   dispatch: (action: ActionsTypes) => void
 }
 
@@ -28,13 +30,8 @@ const App = (props: AppProps) => {
         <Navigation/>
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path='/profile' element={<Profile posts={props.store.getState().profilePage.postsData}
-                                                       newPostText={props.store.getState().profilePage.newPostText}
-                                                       dispatch={props.store.dispatch.bind(props.store)}/>}/>
-            <Route path='/dialogs' element={<Dialog dialogs={props.store.getState().dialogsPage.dialogsData}
-                                                      messages={props.store.getState().dialogsPage.messageData}
-                                                      newMessageText={props.store.getState().dialogsPage.newMessageText}
-                                                      dispatch={props.store.dispatch.bind(props.store)}/>}/>
+            <Route path='/profile' element={<Profile store={props.store} />}/>
+            <Route path='/dialogs' element={<DialogsContainer store={props.store}/>}/>
             <Route path='/news' element={<News/>}/>
             <Route path='/music' element={<Music/>}/>
             <Route path='/settings' element={<Settings/>}/>
@@ -42,10 +39,7 @@ const App = (props: AppProps) => {
           </Routes>
         </div>
       </div>
-
   )
 }
 
 export default App;
-
-

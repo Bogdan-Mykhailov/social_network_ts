@@ -1,53 +1,40 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
 import classes from './MyPosts.module.css'
 import Post from "./Post/Post";
-import state from "../../../Redux/Store";
-import {RerenderEntireTree} from "../../../RerenderEntireTree";
-import { ActionsTypes, addPostAC, updatePostAC } from "../../../Redux/profile-reducer";
+import state, {PostDataType} from "../../../Redux/Store";
+import {ActionsTypes, addPostAC, updatePostAC} from "../../../Redux/profile-reducer";
+import {text} from "stream/consumers";
 
-type MyPostsPropsType = {
-  id: number
-  name: string
-  message: string
-  count: number
-  time: string
-}
 type MyPostsProps = {
-  data: MyPostsPropsType[]
-  dispatch: (action: ActionsTypes) => void
+  data: PostDataType[]
   newPostText: string
+  onChangePostHandler: (event: ChangeEvent<HTMLTextAreaElement>) => void
+  onKeyPressHandler: (event: KeyboardEvent<HTMLTextAreaElement>) => void
+  onClickAddPostButtonHandler: () => void
 }
 
 const MyPosts = (props: MyPostsProps) => {
-  let postDataItem = props.data.map(i => <Post key={i.id} id={i.id} name={i.name} message={i.message} count={i.count} time={i.time}/>)
-  const onClickAddPostButtonHandler = () => {
-    props.dispatch(addPostAC(props.newPostText))
-    RerenderEntireTree()
-  }
-  const onKeyPressHandler = (event: KeyboardEvent<HTMLTextAreaElement>) => {
-    if (event.key === 'Enter') {
-      onClickAddPostButtonHandler()
-    }
-  }
-  const onChangePostHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    props.dispatch(updatePostAC(event.currentTarget.value))
-  }
+  let postDataItem = props.data.map(i => <Post key={i.id} id={i.id}
+                                               name={i.name}
+                                               message={i.message}
+                                               count={i.count}
+                                               time={i.time}
+  />
+  )
 
   return (
     <div className={classes.wraper}>
       <div className={classes.postsbar}>
-        <div className={classes.postbarInside}>
-          <div>
+        <div>
             <textarea value={props.newPostText}
-                      onChange={onChangePostHandler}
+                      onChange={props.onChangePostHandler}
                       style={{resize: 'none'}}
-                      onKeyPress={onKeyPressHandler}
+                      onKeyPress={props.onKeyPressHandler}
                       className={classes.textarea + ' ' + classes.active}/>
-          </div>
-          <div>
-            <button onClick={onClickAddPostButtonHandler} className={classes.add + ' ' + classes.active}>Add post
-            </button>
-          </div>
+        </div>
+        <div>
+          <button onClick={props.onClickAddPostButtonHandler} className={classes.add + ' ' + classes.active}>Add post
+          </button>
         </div>
       </div>
       <div className={classes.post}>

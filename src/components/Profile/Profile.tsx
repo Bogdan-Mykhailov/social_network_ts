@@ -5,13 +5,13 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {PostDataType} from "../../Redux/Store";
 import store from "../../Redux/Store";
 import { ActionsTypes } from "../../Redux/profile-reducer";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import {StoreTypeRedux} from "../../Redux/redux-store";
 
 
 
 type ProfilePropsType = {
-  posts: PostDataType[]
-  dispatch: (action: ActionsTypes) => void
-  newPostText: string
+  store: StoreTypeRedux
 }
 
 const Profile = (props: ProfilePropsType) => {
@@ -19,7 +19,7 @@ const Profile = (props: ProfilePropsType) => {
   return (
     <div>
       <ProfileInfo/>
-      <MyPosts data={props.posts} dispatch={props.dispatch} newPostText={props.newPostText}/>
+      <MyPostsContainer store={props.store} />
     </div>
   )
 }

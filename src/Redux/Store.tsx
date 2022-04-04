@@ -46,7 +46,7 @@ const store: StoreType = {
   _state: {
     profilePage: {
       postsData: [
-        {id: 1, name: 'Neo', message: 'London is the capital of Great Britain, its political, economic and cultural centre. dfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfddfdfdf', count: 14515, time: '12:00'},
+        {id: 1, name: 'Neo', message: 'Нравится - не нравится, империя развалится. Свинособаки', count: 14515, time: '12:00'},
         {id: 2, name: 'Neo', message: 'Русский военный корабль, иди нахуй! 🖕🏻', count: 22563, time: '12:00'}
       ],
       newPostText: ''

@@ -17,13 +17,10 @@ const Navigation = () => {
     <nav className={classes.nav}>
         <NavRow icon={<AccountCircle className={classes.icons} sx={{fontSize: 30}}/>} url='/profile' title='Profile'/>
         <NavRow icon={<MessageRounded className={classes.icons} sx={{fontSize: 30}}/>} url='/dialogs' title='Messages'/>
-        <NavRow icon={<PeopleAltRounded className={classes.icons} sx={{fontSize: 30}}/>}
-                url='/friends'
-                title='Friends'/>
+        <NavRow icon={<PeopleAltRounded className={classes.icons} sx={{fontSize: 30}}/>} url='/friends' title='Friends'/>
         <NavRow icon={<NewspaperRounded className={classes.icons} sx={{fontSize: 30}}/>} url='/news' title='News'/>
         <NavRow icon={<MusicNoteRounded className={classes.icons} sx={{fontSize: 30}}/>} url='/music' title='Music'/>
-        <NavRow icon={<SettingsRounded className={classes.icons} sx={{fontSize: 30}}/>}  url='/settings'
-                title='Settings'/>
+        <NavRow icon={<SettingsRounded className={classes.icons} sx={{fontSize: 30}}/>}  url='/settings' title='Settings'/>
     </nav>
   )
 }

@@ -7,25 +7,36 @@ export type ActionsTypes =
   ReturnType<typeof addNewMessageTextAC> |
   ReturnType<typeof updateMessageAC>
 
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
 export const addPostAC = (postText: string) => {
   return {
-    type: 'ADD-POST',
+    type: ADD_POST,
     postText: postText
   } as const
 }
 export const updatePostAC = (newText: string) => {
   return {
-    type: 'UPDATE-NEW-POST-TEXT',
+    type: UPDATE_NEW_POST_TEXT,
     newText: newText
   } as const
 }
 
 export let realTime = `${new Date().getHours()} : ${(new Date().getMinutes() < 10 ? '0' : '') + new Date().getMinutes()}`
 
-export const profileReducer = (state: ProfilePageType, action: ActionsTypes) => {
+let initialState = {
+  postsData: [
+    {id: 1, name: 'Neo', message: 'Нравится - не нравится, империя развалится. Свинособаки', count: 14515, time: '12:00'},
+    {id: 2, name: 'Neo', message: 'Русский военный корабль, иди нахуй! 🖕🏻', count: 22563, time: '12:00'}
+  ],
+  newPostText: ''
+}
+
+export const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
 
   switch (action.type) {
-    case "ADD-POST": {
+    case ADD_POST: {
       const newPost: PostDataType = {
         id: new Date().getTime(),
         name: 'Neo',
@@ -37,7 +48,7 @@ export const profileReducer = (state: ProfilePageType, action: ActionsTypes) => 
       state.newPostText = ''
       return state;
     }
-    case "UPDATE-NEW-POST-TEXT": {
+    case UPDATE_NEW_POST_TEXT: {
       state.newPostText = action.newText;
       return state;
     }
