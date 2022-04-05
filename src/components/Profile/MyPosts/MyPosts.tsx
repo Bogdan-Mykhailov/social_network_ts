@@ -1,20 +1,13 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
 import classes from './MyPosts.module.css'
 import Post from "./Post/Post";
-import state, {PostDataType} from "../../../Redux/Store";
 import {ActionsTypes, addPostAC, updatePostAC} from "../../../Redux/profile-reducer";
 import {text} from "stream/consumers";
-
-type MyPostsProps = {
-  data: PostDataType[]
-  newPostText: string
-  onChangePostHandler: (event: ChangeEvent<HTMLTextAreaElement>) => void
-  onKeyPressHandler: (event: KeyboardEvent<HTMLTextAreaElement>) => void
-  onClickAddPostButtonHandler: () => void
-}
+import { MyPostsProps } from "./MyPostsContainer";
 
 const MyPosts = (props: MyPostsProps) => {
-  let postDataItem = props.data.map(i => <Post key={i.id} id={i.id}
+
+  let postDataItem = props.postMessage.map(i => <Post key={i.id} id={i.id}
                                                name={i.name}
                                                message={i.message}
                                                count={i.count}
@@ -29,7 +22,7 @@ const MyPosts = (props: MyPostsProps) => {
             <textarea value={props.newPostText}
                       onChange={props.onChangePostHandler}
                       style={{resize: 'none'}}
-                      onKeyPress={props.onKeyPressHandler}
+                      // onKeyPress={props.onKeyPressHandler}
                       className={classes.textarea + ' ' + classes.active}/>
         </div>
         <div>

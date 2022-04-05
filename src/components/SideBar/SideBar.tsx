@@ -1,6 +1,6 @@
 import React from 'react';
+import { DialogsDataType } from '../../Redux/dialogs-reducer';
 import classes from './SideBar.module.css'
-import {DialogsDataType} from "../../Redux/Store";
 
 type SideBarPropsType = {
   contactsData: DialogsDataType[]

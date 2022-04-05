@@ -1,13 +1,28 @@
 import {ActionsTypes, realTime} from "./profile-reducer";
-import {DialogsDataType, DialogsPageType, MessagesDataType} from "./Store";
+
+export type DialogsDataType = {
+  id: number,
+  name: string,
+  avatar: string
+}
+export type MessagesDataType = {
+  id: number,
+  message: string,
+  name: string,
+  avatar: string,
+  time: string
+}
+export type DialogsReducerType = {
+  dialogsData: DialogsDataType[]
+  messageData: MessagesDataType[]
+  newMessageText: string
+}
 
 const ADD_NEW_MESSAGE_TEXT = 'ADD-NEW-MESSAGE-TEXT';
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
-
-export const addNewMessageTextAC = (messageText: string) => {
+export const addNewMessageTextAC = () => {
   return {
     type: ADD_NEW_MESSAGE_TEXT,
-    messageText: messageText
   } as const
 }
 export const updateMessageAC = (updateMessage: string) => {
@@ -17,7 +32,7 @@ export const updateMessageAC = (updateMessage: string) => {
   } as const
 }
 
-let initialState = {
+let initialState: DialogsReducerType = {
   dialogsData: [
     {
       id: 1,
@@ -76,7 +91,7 @@ let initialState = {
   newMessageText: ''
 }
 
-export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes) => {
+export const dialogsReducer = (state: DialogsReducerType = initialState, action: ActionsTypes): DialogsReducerType => {
 
   switch (action.type) {
     case ADD_NEW_MESSAGE_TEXT: {
@@ -87,13 +102,11 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Ac
         avatar: 'https://i.pinimg.com/originals/80/d8/e0/80d8e0232d36605e4fb8697353d4a4f2.gif',
         time: realTime
       };
-      state.messageData.push(newMessage);
-      state.newMessageText = '';
-      return state;
+      return {...state, newMessageText: '', messageData: [...state.messageData, newMessage]};
     }
     case UPDATE_NEW_MESSAGE_TEXT: {
       state.newMessageText = action.updateMessage;
-      return state;
+      return {...state, newMessageText: action.updateMessage};
     }
 
     default:

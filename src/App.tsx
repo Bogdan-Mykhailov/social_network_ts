@@ -9,12 +9,9 @@ import Music from "./components/Music/Music";
 import Settings from './components/Settings/Settings';
 import Friends from "./components/Friends/Friends";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {DialogsPageType, ProfilePageType, StoreType} from "./Redux/Store";
-import {RootStateType} from "./Redux/Store";
-import store from "./Redux/Store";
 import {SideBar} from "./components/SideBar/SideBar";
 import {ActionsTypes} from './Redux/profile-reducer';
-import {StoreTypeRedux} from "./Redux/redux-store";
+import store, {StoreTypeRedux} from "./Redux/redux-store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 const App = () => {

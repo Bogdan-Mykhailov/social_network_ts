@@ -1,7 +1,7 @@
 import classes from './DialogItem.module.css'
 import {NavLink} from "react-router-dom";
 import React from "react";
-import {DialogsDataType} from "../../../Redux/Store";
+import { DialogsDataType } from '../../../Redux/dialogs-reducer';
 
 const DialogItem = (props: DialogsDataType) => {
   const path = '/dialogs/' + props.id

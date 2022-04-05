@@ -1,7 +1,7 @@
 import classes from './Message.module.css'
 import React from "react";
-import {MessagesDataType} from "../../../Redux/Store";
 import {NavLink} from "react-router-dom";
+import { MessagesDataType } from '../../../Redux/dialogs-reducer';
 
 const Message = (props: MessagesDataType) => {
   return (

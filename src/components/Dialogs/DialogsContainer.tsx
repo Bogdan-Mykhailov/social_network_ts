@@ -1,45 +1,52 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
-import {DialogsDataType, MessagesDataType} from "../../Redux/Store";
 import {ActionsTypes} from "../../Redux/profile-reducer";
-import {addNewMessageTextAC, updateMessageAC} from "../../Redux/dialogs-reducer";
+import {addNewMessageTextAC, DialogsReducerType, updateMessageAC} from "../../Redux/dialogs-reducer";
 import {StoreTypeRedux} from "../../Redux/redux-store";
 import Dialogs from "./Dialogs";
-import {RerenderEntireTree} from "../../RerenderEntireTree";
-import StoreContext from "../../StoreContext";
+import {connect} from "react-redux";
+import myPosts from "../Profile/MyPosts/MyPosts";
+import {Dispatch} from "redux";
 
-const DialogsContainer = () => {
-
-  return (
-    <StoreContext.Consumer>
-      {
-        store => {
-
-          let state = store.getState().dialogsPage
-
-          const onClickAddMessageButtonHandler = () => {
-            store.dispatch(addNewMessageTextAC(state.newMessageText))
-            RerenderEntireTree()
-          }
-          const onKeyPressHandler = (event: KeyboardEvent<HTMLTextAreaElement>) => {
-            if (event.key === 'Enter') {
-              onClickAddMessageButtonHandler()
-            }
-          }
-          const onChangeMessageHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
-            store.dispatch(updateMessageAC(event.currentTarget.value))
-
-          }
-
-          return <Dialogs dialogs={state.dialogsData}
-                          messages={state.messageData}
-                          newMessageText={state.newMessageText}
-                          onClickAddMessageButtonHandler={onClickAddMessageButtonHandler}
-                          onKeyPressHandler={onKeyPressHandler}
-                          onChangeMessageHandler={onChangeMessageHandler}/>
-        }
-      }
-    </StoreContext.Consumer>
-  )
+type mapStateToPropsType = {
+  newMessageText: string
+  dialogsPage: DialogsReducerType
 }
+
+type mapDispatchToPropsType = {
+  onClickAddMessageButtonHandler: () => void
+  // onKeyPressHandler: (event: KeyboardEvent<HTMLTextAreaElement>) => void
+  onChangeMessageHandler: (event: ChangeEvent<HTMLTextAreaElement>) => void
+}
+
+export type DialogsPropsType = mapStateToPropsType & mapDispatchToPropsType;
+
+const mapStateToProps = (state: StoreTypeRedux): mapStateToPropsType  => {
+  return {
+    newMessageText: state.dialogsPage.newMessageText,
+    dialogsPage: state.dialogsPage
+  }
+}
+
+const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
+  return {
+
+    onClickAddMessageButtonHandler: () => {
+      dispatch(addNewMessageTextAC())
+    },
+    // onKeyPressHandler: (event: KeyboardEvent<HTMLTextAreaElement>) => {
+    //   if (event.key === 'Enter') {
+    //     onClickAddMessageButtonHandler()
+    //   }
+    // },
+    onChangeMessageHandler: (event: ChangeEvent<HTMLTextAreaElement>) => {
+      dispatch(updateMessageAC(event.currentTarget.value))
+    }
+
+
+  }
+}
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+
 export default DialogsContainer;
 

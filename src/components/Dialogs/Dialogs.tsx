@@ -3,25 +3,16 @@ import {NavLink} from "react-router-dom";
 import classes from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from './Message/Message'
-import {DialogsDataType, MessagesDataType} from "../../Redux/Store";
 import {ActionsTypes} from "../../Redux/profile-reducer";
 import {addNewMessageTextAC, updateMessageAC} from "../../Redux/dialogs-reducer";
 import {StoreTypeRedux} from "../../Redux/redux-store";
-
-type DialogsPropsType = {
-  dialogs: DialogsDataType[]
-  messages: MessagesDataType[]
-  newMessageText: string
-  onClickAddMessageButtonHandler: () => void
-  onKeyPressHandler: (event: KeyboardEvent<HTMLTextAreaElement>) => void
-  onChangeMessageHandler: (event: ChangeEvent<HTMLTextAreaElement>) => void
-}
+import { DialogsPropsType } from "./DialogsContainer";
 
 const Dialogs = (props: DialogsPropsType) => {
 
-  let dialogsDataItem = props.dialogs.map(i => <DialogItem key={i.id} id={i.id} name={i.name} avatar={i.avatar}/>)
+  let dialogsDataItem = props.dialogsPage.dialogsData.map(i => <DialogItem key={i.id} id={i.id} name={i.name} avatar={i.avatar}/>)
 
-  let messageDataItem = props.messages.map(i => <Message key={i.id} id={i.id} message={i.message} name={i.name}
+  let messageDataItem = props.dialogsPage.messageData.map(i => <Message key={i.id} id={i.id} message={i.message} name={i.name}
                                                          avatar={i.avatar} time={i.time}/>)
 
   return (
@@ -37,7 +28,7 @@ const Dialogs = (props: DialogsPropsType) => {
             <textarea value={props.newMessageText}
                       onChange={props.onChangeMessageHandler}
                       style={{resize: 'none'}}
-                      onKeyPress={props.onKeyPressHandler}
+                      // onKeyPress={props.onKeyPressHandler}
                       className={classes.textarea + ' ' + classes.active}
             />
         </div>

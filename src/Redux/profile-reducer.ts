@@ -1,5 +1,4 @@
 import { addNewMessageTextAC, updateMessageAC } from "./dialogs-reducer";
-import {PostDataType, ProfilePageType} from "./Store";
 
 export type ActionsTypes =
   ReturnType<typeof addPostAC> |
@@ -7,13 +6,23 @@ export type ActionsTypes =
   ReturnType<typeof addNewMessageTextAC> |
   ReturnType<typeof updateMessageAC>
 
+export type PostDataType = {
+  id: number,
+  name: string
+  message: string,
+  count: number
+  time: string
+}
+export type ProfileReducerType = {
+  postsData: PostDataType[]
+  newPostText: string
+}
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-
-export const addPostAC = (postText: string) => {
+export const addPostAC = () => {
   return {
     type: ADD_POST,
-    postText: postText
   } as const
 }
 export const updatePostAC = (newText: string) => {
@@ -25,32 +34,31 @@ export const updatePostAC = (newText: string) => {
 
 export let realTime = `${new Date().getHours()} : ${(new Date().getMinutes() < 10 ? '0' : '') + new Date().getMinutes()}`
 
-let initialState = {
+
+let initialState: ProfileReducerType = {
   postsData: [
-    {id: 1, name: 'Neo', message: 'Нравится - не нравится, империя развалится. Свинособаки', count: 14515, time: '12:00'},
-    {id: 2, name: 'Neo', message: 'Русский военный корабль, иди нахуй! 🖕🏻', count: 22563, time: '12:00'}
+    {id: 1, name: 'Neo', message: 'Нравится - не нравится, империя развалится.', count: 14515, time: '12:00'},
+    {id: 2, name: 'Neo', message: 'Русский военный корабль, иди нахуй!', count: 22563, time: '12:00'}
   ],
   newPostText: ''
 }
 
-export const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
+export const profileReducer = (state: ProfileReducerType = initialState, action: ActionsTypes): ProfileReducerType => {
 
   switch (action.type) {
     case ADD_POST: {
       const newPost: PostDataType = {
         id: new Date().getTime(),
         name: 'Neo',
-        message: action.postText,
+        message: state.newPostText,
         count: 0,
         time: realTime
       };
-      state.postsData.push(newPost);
-      state.newPostText = ''
-      return state;
+      return {...state, newPostText: '', postsData: [...state.postsData, newPost]};
     }
     case UPDATE_NEW_POST_TEXT: {
       state.newPostText = action.newText;
-      return state;
+      return {...state, newPostText: action.newText};
     }
 
     default:
