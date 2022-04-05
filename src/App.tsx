@@ -13,6 +13,7 @@ import {SideBar} from "./components/SideBar/SideBar";
 import {ActionsTypes} from './Redux/profile-reducer';
 import store, {StoreTypeRedux} from "./Redux/redux-store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import {Users} from "./components/Users/Users";
 
 const App = () => {
   return (
@@ -22,12 +23,13 @@ const App = () => {
       <Navigation/>
       <div className='app-wrapper-content'>
         <Routes>
-          <Route path='/profile' element={<Profile/>}/>
-          <Route path='/dialogs' element={<DialogsContainer/>}/>
-          <Route path='/news' element={<News/>}/>
-          <Route path='/music' element={<Music/>}/>
-          <Route path='/settings' element={<Settings/>}/>
-          <Route path='/friends' element={<Friends/>}/>
+          <Route path='/profile/*' element={<Profile/>}/>
+          <Route path='/dialogs/*' element={<DialogsContainer/>}/>
+          <Route path='/news/*' element={<News/>}/>
+          <Route path='/music/*' element={<Music/>}/>
+          <Route path='/settings/*' element={<Settings/>}/>
+          <Route path='/friends/*' element={<Friends/>}/>
+          <Route path='/users/*' element={<Users/>}/>
         </Routes>
       </div>
     </div>
