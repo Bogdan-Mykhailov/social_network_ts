@@ -13,32 +13,27 @@ import {DialogsPageType, ProfilePageType, StoreType} from "./Redux/Store";
 import {RootStateType} from "./Redux/Store";
 import store from "./Redux/Store";
 import {SideBar} from "./components/SideBar/SideBar";
-import { ActionsTypes } from './Redux/profile-reducer';
+import {ActionsTypes} from './Redux/profile-reducer';
 import {StoreTypeRedux} from "./Redux/redux-store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-type AppProps = {
-  store: StoreTypeRedux
-  dispatch: (action: ActionsTypes) => void
-}
-
-const App = (props: AppProps) => {
+const App = () => {
   return (
-      <div className='app-wrapper'>
-        <Header/>
-        <SideBar contactsData={props.store.getState().dialogsPage.dialogsData}/>
-        <Navigation/>
-        <div className='app-wrapper-content'>
-          <Routes>
-            <Route path='/profile' element={<Profile store={props.store} />}/>
-            <Route path='/dialogs' element={<DialogsContainer store={props.store}/>}/>
-            <Route path='/news' element={<News/>}/>
-            <Route path='/music' element={<Music/>}/>
-            <Route path='/settings' element={<Settings/>}/>
-            <Route path='/friends' element={<Friends/>}/>
-          </Routes>
-        </div>
+    <div className='app-wrapper'>
+      <Header/>
+      <SideBar contactsData={store.getState().dialogsPage.dialogsData}/>
+      <Navigation/>
+      <div className='app-wrapper-content'>
+        <Routes>
+          <Route path='/profile' element={<Profile/>}/>
+          <Route path='/dialogs' element={<DialogsContainer/>}/>
+          <Route path='/news' element={<News/>}/>
+          <Route path='/music' element={<Music/>}/>
+          <Route path='/settings' element={<Settings/>}/>
+          <Route path='/friends' element={<Friends/>}/>
+        </Routes>
       </div>
+    </div>
   )
 }
 

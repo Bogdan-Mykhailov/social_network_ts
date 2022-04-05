@@ -3,12 +3,14 @@ import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 import React from "react";
 import store from "./Redux/redux-store";
+import StoreContext from "./StoreContext";
 
 export const RerenderEntireTree = () => {
   ReactDOM.render(
     <BrowserRouter>
-      <App store={store}
-           dispatch={store.dispatch.bind(store)}/>
+      <StoreContext.Provider value={store}>
+        <App/>
+      </StoreContext.Provider>
     </BrowserRouter>,
     document.getElementById('root')
   );

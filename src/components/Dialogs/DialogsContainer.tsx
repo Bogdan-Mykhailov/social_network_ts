@@ -4,37 +4,42 @@ import {ActionsTypes} from "../../Redux/profile-reducer";
 import {addNewMessageTextAC, updateMessageAC} from "../../Redux/dialogs-reducer";
 import {StoreTypeRedux} from "../../Redux/redux-store";
 import Dialogs from "./Dialogs";
-import { RerenderEntireTree } from "../../RerenderEntireTree";
+import {RerenderEntireTree} from "../../RerenderEntireTree";
+import StoreContext from "../../StoreContext";
 
-export type DialogsPropsType = {
-  store: StoreTypeRedux
-}
+const DialogsContainer = () => {
 
-const DialogsContainer = (props: DialogsPropsType) => {
+  return (
+    <StoreContext.Consumer>
+      {
+        store => {
 
-  let state = props.store.getState().dialogsPage
+          let state = store.getState().dialogsPage
 
-  const onClickAddMessageButtonHandler = () => {
-    props.store.dispatch(addNewMessageTextAC(state.newMessageText))
-    RerenderEntireTree()
-  }
-  const onKeyPressHandler = (event: KeyboardEvent<HTMLTextAreaElement>) => {
-    if (event.key === 'Enter') {
-      onClickAddMessageButtonHandler()
-    }
-  }
-  const onChangeMessageHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    props.store.dispatch(updateMessageAC(event.currentTarget.value))
+          const onClickAddMessageButtonHandler = () => {
+            store.dispatch(addNewMessageTextAC(state.newMessageText))
+            RerenderEntireTree()
+          }
+          const onKeyPressHandler = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+            if (event.key === 'Enter') {
+              onClickAddMessageButtonHandler()
+            }
+          }
+          const onChangeMessageHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
+            store.dispatch(updateMessageAC(event.currentTarget.value))
 
-  }
+          }
 
-  return <Dialogs
-    dialogs={state.dialogsData}
-    messages={state.messageData}
-    newMessageText={state.newMessageText}
-    onClickAddMessageButtonHandler={onClickAddMessageButtonHandler}
-    onKeyPressHandler={onKeyPressHandler}
-    onChangeMessageHandler={onChangeMessageHandler}/>
+          return <Dialogs dialogs={state.dialogsData}
+                          messages={state.messageData}
+                          newMessageText={state.newMessageText}
+                          onClickAddMessageButtonHandler={onClickAddMessageButtonHandler}
+                          onKeyPressHandler={onKeyPressHandler}
+                          onChangeMessageHandler={onChangeMessageHandler}/>
+        }
+      }
+    </StoreContext.Consumer>
+  )
 }
 export default DialogsContainer;
 

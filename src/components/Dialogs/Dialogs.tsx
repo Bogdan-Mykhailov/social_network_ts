@@ -6,7 +6,6 @@ import Message from './Message/Message'
 import {DialogsDataType, MessagesDataType} from "../../Redux/Store";
 import {ActionsTypes} from "../../Redux/profile-reducer";
 import {addNewMessageTextAC, updateMessageAC} from "../../Redux/dialogs-reducer";
-import {DialogsPropsType} from "./DialogsContainer";
 import {StoreTypeRedux} from "../../Redux/redux-store";
 
 type DialogsProps = {
@@ -20,11 +19,10 @@ type DialogsProps = {
 
 const Dialogs = (props: DialogsProps) => {
 
-  // let state = props.store.getState().dialogsPage
-
   let dialogsDataItem = props.dialogs.map(i => <DialogItem key={i.id} id={i.id} name={i.name} avatar={i.avatar}/>)
 
-  let messageDataItem = props.messages.map(i => <Message key={i.id} id={i.id} message={i.message} name={i.name} avatar={i.avatar} time={i.time}/>)
+  let messageDataItem = props.messages.map(i => <Message key={i.id} id={i.id} message={i.message} name={i.name}
+                                                         avatar={i.avatar} time={i.time}/>)
 
   return (
     <div className={classes.dialogs}>
