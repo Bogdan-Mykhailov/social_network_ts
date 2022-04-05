@@ -8,7 +8,7 @@ import {ActionsTypes} from "../../Redux/profile-reducer";
 import {addNewMessageTextAC, updateMessageAC} from "../../Redux/dialogs-reducer";
 import {StoreTypeRedux} from "../../Redux/redux-store";
 
-type DialogsProps = {
+type DialogsPropsType = {
   dialogs: DialogsDataType[]
   messages: MessagesDataType[]
   newMessageText: string
@@ -17,7 +17,7 @@ type DialogsProps = {
   onChangeMessageHandler: (event: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
-const Dialogs = (props: DialogsProps) => {
+const Dialogs = (props: DialogsPropsType) => {
 
   let dialogsDataItem = props.dialogs.map(i => <DialogItem key={i.id} id={i.id} name={i.name} avatar={i.avatar}/>)
 

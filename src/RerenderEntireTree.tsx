@@ -2,7 +2,7 @@ import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 import React from "react";
-import store from "./Redux/redux-store";
+import {store} from "./Redux/redux-store";
 import StoreContext from "./StoreContext";
 
 export const RerenderEntireTree = () => {
