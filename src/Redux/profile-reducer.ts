@@ -1,10 +1,14 @@
-import { addNewMessageTextAC, updateMessageAC } from "./dialogs-reducer";
+import {addNewMessageTextAC, updateMessageAC} from "./dialogs-reducer";
+import {followAC, setUsersAC, unfollowAC} from "./users-reducer";
 
 export type ActionsTypes =
   ReturnType<typeof addPostAC> |
   ReturnType<typeof updatePostAC> |
   ReturnType<typeof addNewMessageTextAC> |
-  ReturnType<typeof updateMessageAC>
+  ReturnType<typeof updateMessageAC> |
+  ReturnType<typeof followAC> |
+  ReturnType<typeof unfollowAC> |
+  ReturnType<typeof setUsersAC>
 
 export type PostDataType = {
   id: number,
@@ -18,16 +22,24 @@ export type ProfileReducerType = {
   newPostText: string
 }
 
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
+// еще один вариант использования типов
+export enum ACTION_TYPE {
+  ADD_POST = 'ADD-POST',
+  UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+}
+
+// const ADD_POST = 'ADD-POST';
+// const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
 export const addPostAC = () => {
   return {
-    type: ADD_POST,
+    type: ACTION_TYPE.ADD_POST,
   } as const
 }
 export const updatePostAC = (newText: string) => {
   return {
-    type: UPDATE_NEW_POST_TEXT,
+    type: ACTION_TYPE.UPDATE_NEW_POST_TEXT,
     newText: newText
   } as const
 }
@@ -46,7 +58,7 @@ let initialState: ProfileReducerType = {
 export const profileReducer = (state: ProfileReducerType = initialState, action: ActionsTypes): ProfileReducerType => {
 
   switch (action.type) {
-    case ADD_POST: {
+    case ACTION_TYPE.ADD_POST: {
       const newPost: PostDataType = {
         id: new Date().getTime(),
         name: 'Neo',
@@ -56,7 +68,7 @@ export const profileReducer = (state: ProfileReducerType = initialState, action:
       };
       return {...state, newPostText: '', postsData: [...state.postsData, newPost]};
     }
-    case UPDATE_NEW_POST_TEXT: {
+    case ACTION_TYPE.UPDATE_NEW_POST_TEXT: {
       state.newPostText = action.newText;
       return {...state, newPostText: action.newText};
     }

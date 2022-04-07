@@ -18,16 +18,21 @@ export type DialogsReducerType = {
   newMessageText: string
 }
 
-const ADD_NEW_MESSAGE_TEXT = 'ADD-NEW-MESSAGE-TEXT';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+export enum ACTION_TYPE {
+  ADD_NEW_MESSAGE_TEXT = 'ADD-NEW-MESSAGE-TEXT',
+  UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
+}
+// const ADD_NEW_MESSAGE_TEXT = 'ADD-NEW-MESSAGE-TEXT';
+// const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+
 export const addNewMessageTextAC = () => {
   return {
-    type: ADD_NEW_MESSAGE_TEXT,
+    type: ACTION_TYPE.ADD_NEW_MESSAGE_TEXT,
   } as const
 }
 export const updateMessageAC = (updateMessage: string) => {
   return {
-    type: UPDATE_NEW_MESSAGE_TEXT,
+    type: ACTION_TYPE.UPDATE_NEW_MESSAGE_TEXT,
     updateMessage: updateMessage
   } as const
 }
@@ -93,8 +98,9 @@ let initialState: DialogsReducerType = {
 
 export const dialogsReducer = (state: DialogsReducerType = initialState, action: ActionsTypes): DialogsReducerType => {
 
+
   switch (action.type) {
-    case ADD_NEW_MESSAGE_TEXT: {
+    case ACTION_TYPE.ADD_NEW_MESSAGE_TEXT: {
       const newMessage: MessagesDataType = {
         id: new Date().getTime(),
         message: state.newMessageText,
@@ -104,7 +110,7 @@ export const dialogsReducer = (state: DialogsReducerType = initialState, action:
       };
       return {...state, newMessageText: '', messageData: [...state.messageData, newMessage]};
     }
-    case UPDATE_NEW_MESSAGE_TEXT: {
+    case ACTION_TYPE.UPDATE_NEW_MESSAGE_TEXT: {
       state.newMessageText = action.updateMessage;
       return {...state, newMessageText: action.updateMessage};
     }

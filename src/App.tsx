@@ -13,7 +13,7 @@ import {SideBar} from "./components/SideBar/SideBar";
 import {ActionsTypes} from './Redux/profile-reducer';
 import store, {StoreTypeRedux} from "./Redux/redux-store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import {Users} from "./components/Users/Users";
+import { UsersContainer } from './components/Users/UsersContainer';
 
 const App = () => {
   return (
@@ -29,7 +29,7 @@ const App = () => {
           <Route path='/music/*' element={<Music/>}/>
           <Route path='/settings/*' element={<Settings/>}/>
           <Route path='/friends/*' element={<Friends/>}/>
-          <Route path='/users/*' element={<Users/>}/>
+          <Route path='/users/*' element={<UsersContainer/>}/>
         </Routes>
       </div>
     </div>

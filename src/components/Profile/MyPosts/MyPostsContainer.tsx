@@ -36,7 +36,6 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     //     onClickAddPostButtonHandler()
     //   }
     // },
-
     onChangePostHandler: (event: ChangeEvent<HTMLTextAreaElement>) => {
       dispatch(updatePostAC(event.currentTarget.value))
     }
