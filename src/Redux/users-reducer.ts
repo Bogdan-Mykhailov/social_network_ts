@@ -1,16 +1,20 @@
-import { v1 } from "uuid";
+import {v1} from "uuid";
 import {ActionsTypes} from "./profile-reducer";
+import {ReactJSXElement} from "@emotion/react/types/jsx-namespace";
 
 export type UsersDataType = {
   id: string
-  fulName: string
+  name: string
   status: string
+  photos: {
+    small: string
+    large: string
+  }
   location: {
     country: string
     city: string
   }
   isFollow: boolean
-
 }
 export type usersReducerType = {
   users: UsersDataType[]
@@ -21,6 +25,7 @@ export enum ACTION_TYPE {
   UNFOLLOW = 'UNFOLLOW-USER',
   SET_USERS = 'SET-USERS',
 }
+
 
 export const followAC = (userId: string) => {
   return {
@@ -38,7 +43,7 @@ export const unfollowAC = (userId: string) => {
     },
   } as const
 }
-export const setUsersAC = (users: UsersDataType) => {
+export const setUsersAC = (users: UsersDataType[]) => {
   return {
     type: ACTION_TYPE.SET_USERS,
     payload: {
@@ -46,15 +51,8 @@ export const setUsersAC = (users: UsersDataType) => {
     },
   } as const
 }
-
-
 let initialState: usersReducerType = {
-  users: [
-    {id: v1(), isFollow: true, fulName: 'Stepan Bandera', status: 'Put a few Muscovites on a bottle', location: {city: 'Lviv', country: 'Ukraine'}},
-    {id: v1(), isFollow: false, fulName: 'Pikachu', status: 'Send all russian home from EU', location: {city: 'Vinnitsia', country: 'Ukraine'}},
-    {id: v1(), isFollow: true, fulName: 'Taras Shevchenco', status: 'Fight and fight', location: {city: 'Moryntci', country: 'Ukraine'}},
-    {id: v1(), isFollow: false, fulName: 'Romelu Lukaku', status: 'Putler KAPUT', location: {city: 'Antwerp', country: 'Belgium'}},
-  ],
+  users: [ ] as UsersDataType[],
 }
 
 export const usersReducer = (state: usersReducerType = initialState, action: ActionsTypes): usersReducerType => {
@@ -64,19 +62,20 @@ export const usersReducer = (state: usersReducerType = initialState, action: Act
     case ACTION_TYPE.FOLLOW: {
       return {
         ...state,
-        users: state.users.map(u => u.id === action.payload.userId ? {...u, isFollow: true} : u)
+        users: state.users.map(u => u.id === action.payload.userId ? {...u, isFollow: false} : u)
       }
     }
 
     case ACTION_TYPE.UNFOLLOW: {
       return {
         ...state,
-        users: state.users.map(u => u.id === action.payload.userId ? {...u, isFollow: false} : u)
+        users: state.users.map(u => u.id === action.payload.userId ? {...u, isFollow: true} : u)
       }
 
-    }case ACTION_TYPE.SET_USERS: {
+    }
+    case ACTION_TYPE.SET_USERS: {
       return {
-      ...state, users: [...state.users, action.payload.users]
+        ...state, users: [...state.users, ...action.payload.users]
       }
     }
 

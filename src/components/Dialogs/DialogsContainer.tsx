@@ -41,8 +41,6 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     onChangeMessageHandler: (event: ChangeEvent<HTMLTextAreaElement>) => {
       dispatch(updateMessageAC(event.currentTarget.value))
     }
-
-
   }
 }
 

@@ -92,7 +92,7 @@ let initialState: DialogsReducerType = {
       avatar: 'https://cdn.pixabay.com/photo/2021/10/13/11/29/girl-6706267__340.jpg',
       time: '14:57'
     },
-  ],
+  ] as MessagesDataType[],
   newMessageText: ''
 }
 

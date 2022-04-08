@@ -51,7 +51,7 @@ let initialState: ProfileReducerType = {
   postsData: [
     {id: 1, name: 'Neo', message: 'Нравится - не нравится, империя развалится.', count: 14515, time: '12:00'},
     {id: 2, name: 'Neo', message: 'Русский военный корабль, иди нахуй!', count: 22563, time: '12:00'}
-  ],
+  ] as PostDataType[],
   newPostText: ''
 }
 

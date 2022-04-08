@@ -34,9 +34,9 @@ const Post = (props: PostPropsType) => {
       </div>
       <div className={classes.likeWrapper}>
         <div className={classes.likeIcons}>
-          <ThumbUpOutlinedIcon/>
-          <FavoriteBorderOutlinedIcon/>
-          <MapsUgcOutlinedIcon/>
+          <ThumbUpOutlinedIcon onClick={() => {alert('LIKE')}}/>
+          <FavoriteBorderOutlinedIcon onClick={() => {alert('FAVORITE')}}/>
+          <MapsUgcOutlinedIcon onClick={() => {alert('POST')}}/>
         </div>
         <div className={classes.count}>
           <span>{props.count}</span>
