@@ -2,17 +2,14 @@ import React from 'react';
 import {UsersPropsType} from "./UsersContainer";
 import classes from './Users.module.css'
 import {v1} from "uuid";
-import * as axios from 'axios';
+import axios from 'axios';
 import userIcon from '../assets/images/userIcon.png'
 
-class Users extends React.Component {
-//@ts-ignore
-  constructor(props) {
+export class Users extends React.Component<UsersPropsType> {
+  constructor(props: UsersPropsType) {
     super(props);
-    //@ts-ignore
+   
     axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-
-      // @ts-ignore
       this.props.setUsersButtonHandler(response.data.items)
     });
   }
@@ -21,7 +18,6 @@ class Users extends React.Component {
     return (
       <div>
         {
-          //@ts-ignore
           this.props.users.map(u => <div key={u.id}>
           <span>
             <div>
@@ -31,14 +27,8 @@ class Users extends React.Component {
             <div>
              {
                u.isFollow
-                 ? <button onClick={() => {
-                   //@ts-ignore
-                   this.props.followButtonHandler(u.id)
-                 }}>Unfollow</button>
-                 : <button onClick={() => {
-                   //@ts-ignore
-                   this.props.unfollowButtonHandler(u.id)
-                 }}>Follow</button>
+                 ? <button onClick={() => {this.props.followButtonHandler(u.id)}}>Unfollow</button>
+                 : <button onClick={() => {this.props.unfollowButtonHandler(u.id)}}>Follow</button>
              }
             </div>
           </span>

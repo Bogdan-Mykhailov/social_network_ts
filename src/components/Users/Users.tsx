@@ -2,15 +2,13 @@ import React from 'react';
 import {UsersPropsType} from "./UsersContainer";
 import classes from './Users.module.css'
 import {v1} from "uuid";
-import * as axios from 'axios';
+import axios from 'axios';
 import userIcon from '../assets/images/userIcon.png'
-
 
 export const Users = (props: UsersPropsType) => {
 
  const getUsersButtonHandler = () => {
      if (props.users.length === 0) {
-       //@ts-ignore
        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
          props.setUsersButtonHandler(response.data.items)
        });
