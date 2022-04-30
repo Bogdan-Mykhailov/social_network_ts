@@ -1,5 +1,5 @@
 import {addNewMessageTextAC, updateMessageAC} from "./dialogs-reducer";
-import {followAC, setCurrentPageAC, setUsersAC, unfollowAC} from "./users-reducer";
+import {follow, setCurrentPage, setUsers, unfollow} from "./users-reducer";
 
 export type ActionsTypes =
   ReturnType<typeof addPostAC> |

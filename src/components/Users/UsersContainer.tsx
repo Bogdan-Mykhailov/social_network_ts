@@ -3,12 +3,12 @@ import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
 import {StoreTypeRedux} from "../../Redux/redux-store";
 import {
-  followAC,
-  setCurrentPageAC,
-  setTotalUsersCountAC,
-  setUsersAC,
-  toggleIsFetchingAC,
-  unfollowAC,
+  follow,
+  setCurrentPage,
+  setTotalUsersCount,
+  setUsers,
+  toggleIsFetching,
+  unfollow,
   UsersDataType,
   usersReducerType
 } from "../../Redux/users-reducer";
@@ -26,9 +26,9 @@ type mapStateToPropsType = {
   isFetching: boolean,
 }
 type mapDispatchToPropsType = {
-  followButtonHandler: (userId: string) => void
-  unfollowButtonHandler: (userId: string) => void
-  setUsersButtonHandler: (users: UsersDataType[]) => void
+  follow: (userId: string) => void
+  unfollow: (userId: string) => void
+  setUsers: (users: UsersDataType[]) => void
   setCurrentPage: (pageNumber: number) => void
   setTotalUsersCount: (totalCount: number) => void
   toggleIsFetching: (isFetching: boolean) => void
@@ -40,7 +40,7 @@ export class UsersContainer extends React.Component<UsersPropsType> {
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
       .then(response => {
         this.props.toggleIsFetching(false)
-        this.props.setUsersButtonHandler(response.data.items);
+        this.props.setUsers(response.data.items);
         this.props.setTotalUsersCount(response.data.totalCount);
       });
   }
@@ -51,7 +51,7 @@ export class UsersContainer extends React.Component<UsersPropsType> {
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
       .then(response => {
         this.props.toggleIsFetching(false)
-        this.props.setUsersButtonHandler(response.data.items);
+        this.props.setUsers(response.data.items);
       });
   }
 
@@ -66,8 +66,8 @@ export class UsersContainer extends React.Component<UsersPropsType> {
           currentPage={this.props.currentPage}
           onPageChanged={this.onPageChanged}
           users={this.props.users}
-          followButtonHandler={this.props.followButtonHandler}
-          unfollowButtonHandler={this.props.unfollowButtonHandler}
+          follow={this.props.follow}
+          unfollow={this.props.unfollow}
         />
       </>
     );
@@ -83,30 +83,14 @@ const mapStateToProps = (state: StoreTypeRedux): mapStateToPropsType => {
     isFetching: state.usersPage.isFetching
   }
 }
-const mapDispatchToProps = (dispatch: Dispatch) => {
 
-  return {
-    followButtonHandler: (userId: string) => {
-      dispatch(followAC(userId))
-    },
-    unfollowButtonHandler: (userId: string) => {
-      dispatch(unfollowAC(userId))
-    },
-    setUsersButtonHandler: (users: UsersDataType[]) => {
-      dispatch(setUsersAC(users))
-    },
-    setCurrentPage: (pageNumber: number) => {
-      dispatch(setCurrentPageAC(pageNumber))
-    },
-    setTotalUsersCount: (totalCount: number) => {
-      dispatch(setTotalUsersCountAC(totalCount))
-    },
-    toggleIsFetching: (isFetching: boolean) => {
-      dispatch(toggleIsFetchingAC(isFetching))
-    },
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, {
+  follow: follow,
+  unfollow: unfollow,
+  setUsers: setUsers,
+  setCurrentPage: setCurrentPage,
+  setTotalUsersCount: setTotalUsersCount,
+  toggleIsFetching: toggleIsFetching
+})(UsersContainer);
 
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from "./Users.module.css";
 import userIcon from "../assets/images/userIcon.png";
-import {UsersDataType} from "../../Redux/users-reducer";
+import {follow, UsersDataType} from "../../Redux/users-reducer";
 
 type UsersPropsTypes = {
   totalUsers: number
@@ -9,8 +9,8 @@ type UsersPropsTypes = {
   currentPage: number
   onPageChanged: (p: number) => void
   users: UsersDataType[]
-  followButtonHandler: (id: string) => void
-  unfollowButtonHandler: (id: string) => void
+  follow: (id: string) => void
+  unfollow: (id: string) => void
 }
 
 export const Users = (props: UsersPropsTypes) => {
@@ -44,10 +44,10 @@ export const Users = (props: UsersPropsTypes) => {
              {
                u.isFollow
                  ? <button onClick={() => {
-                   props.followButtonHandler(u.id)
+                   props.follow(u.id)
                  }}>Unfollow</button>
                  : <button onClick={() => {
-                   props.unfollowButtonHandler(u.id)
+                   props.unfollow(u.id)
                  }}>Follow</button>
              }
             </div>
