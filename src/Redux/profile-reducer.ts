@@ -1,14 +1,11 @@
 import {addNewMessageTextAC, updateMessageAC} from "./dialogs-reducer";
-import {followAC, setUsersAC, unfollowAC} from "./users-reducer";
+import {followAC, setCurrentPageAC, setUsersAC, unfollowAC} from "./users-reducer";
 
 export type ActionsTypes =
   ReturnType<typeof addPostAC> |
   ReturnType<typeof updatePostAC> |
   ReturnType<typeof addNewMessageTextAC> |
-  ReturnType<typeof updateMessageAC> |
-  ReturnType<typeof followAC> |
-  ReturnType<typeof unfollowAC> |
-  ReturnType<typeof setUsersAC>
+  ReturnType<typeof updateMessageAC>
 
 export type PostDataType = {
   id: number,
@@ -28,9 +25,6 @@ export enum ACTION_TYPE {
   ADD_POST = 'ADD-POST',
   UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 }
-
-// const ADD_POST = 'ADD-POST';
-// const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
 export const addPostAC = () => {
   return {
