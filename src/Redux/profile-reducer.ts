@@ -1,5 +1,5 @@
 import {addNewMessageTextAC, updateMessageAC} from "./dialogs-reducer";
-import {follow, setCurrentPage, setUsers, unfollow, UsersDataType} from "./users-reducer";
+import {follow, setCurrentPage, setUsers, unfollow} from "./users-reducer";
 
 export type ActionsTypes =
   ReturnType<typeof addPostAC> |
@@ -15,10 +15,33 @@ export type PostDataType = {
   count: number
   time: string
 }
+
+export type ProfileDataTypes = {
+  aboutMe: string
+  contacts: {
+    facebook: string
+    website: null,
+    vk: string
+    twitter: string
+    instagram: string
+    youtube: null,
+    github: string
+    mainLink: null
+  },
+  lookingForAJob: true,
+  lookingForAJobDescription: string
+  fullName: string
+  userId: 2,
+  photos: {
+    small: string
+    large: string
+  }
+}
+
 export type ProfileReducerType = {
   postsData: PostDataType[]
   newPostText: string
-  profile: null | UsersDataType
+  profile: null | ProfileDataTypes
 }
 
 export enum ACTION_TYPE {
@@ -38,7 +61,7 @@ export const updatePostAC = (newText: string) => {
     newText: newText
   } as const
 }
-export const setUserProfile = (profile: UsersDataType) => {
+export const setUserProfile = (profile: ProfileDataTypes) => {
   return {
     type: ACTION_TYPE.SET_USER_PROFILE,
     profile

@@ -16,13 +16,6 @@ export type UsersDataType = {
     city: string
   }
   isFollow: boolean
-  aboutMe: string
-  contacts: {
-    facebook: string
-    twitter: string
-    instagram: string
-    github: string
-  }
 }
 export type usersReducerType = {
   users: UsersDataType[],

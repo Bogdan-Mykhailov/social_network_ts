@@ -1,11 +1,12 @@
 import React from 'react';
 import classes from './ProfileInfo.module.css'
 import photo from './photo.jpg'
-import {UsersDataType} from "../../../Redux/users-reducer";
+
 import {Preloader} from "../../Common/Preloader/Preloader";
+import {ProfileDataTypes} from "../../../Redux/profile-reducer";
 
 type ProfileInfoPropsType = {
-  profile: null |UsersDataType
+  profile: null | ProfileDataTypes
 }
 
 const ProfileInfo = (props: ProfileInfoPropsType) => {
@@ -24,9 +25,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
 
       <div className={classes.avatar}>
         <img src={props.profile.photos.large} alt="avatar"/>
-        <div>{props.profile.aboutMe}</div>
-        <div>{props.profile.contacts.github}</div>
-        <div>{props.profile.contacts.facebook}</div>
+        <h3>{props.profile.fullName}</h3>
       </div>
     </div>
   );

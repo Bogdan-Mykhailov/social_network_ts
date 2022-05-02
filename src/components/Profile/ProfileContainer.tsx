@@ -2,7 +2,7 @@ import React from "react";
 import classes from './Profile.module.css'
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {ActionsTypes, setUserProfile} from "../../Redux/profile-reducer";
+import {ActionsTypes, ProfileDataTypes, setUserProfile} from "../../Redux/profile-reducer";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import {StoreTypeRedux} from "../../Redux/redux-store";
 import Profile from "./Profile";
@@ -13,11 +13,11 @@ import {UsersDataType} from "../../Redux/users-reducer";
 type ProfilePropsType = MapStateToPropsType & MapDispatchToPropsType
 
 type MapStateToPropsType = {
-  profile: null |UsersDataType
+  profile: null | ProfileDataTypes
 }
 
 type MapDispatchToPropsType = {
-  setUserProfile: (profile: UsersDataType) => void
+  setUserProfile: (profile: ProfileDataTypes) => void
 }
 
 class ProfileContainer extends React.Component<ProfilePropsType> {
