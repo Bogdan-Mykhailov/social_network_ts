@@ -18,6 +18,7 @@ import inProgress from './assets/inProgress.svg'
 import {Preloader} from "../Common/Preloader/Preloader";
 
 export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType
+
 type mapStateToPropsType = {
   users: UsersDataType[],
   pageSize: number,
@@ -41,7 +42,7 @@ export class UsersContainer extends React.Component<UsersPropsType> {
       .then(response => {
         this.props.toggleIsFetching(false)
         this.props.setUsers(response.data.items);
-        this.props.setTotalUsersCount(response.data.totalCount);
+        this.props.setTotalUsersCount(response.data.totalCount = 30);
       });
   }
 
@@ -85,12 +86,12 @@ const mapStateToProps = (state: StoreTypeRedux): mapStateToPropsType => {
 }
 
 export default connect(mapStateToProps, {
-  follow: follow,
-  unfollow: unfollow,
-  setUsers: setUsers,
-  setCurrentPage: setCurrentPage,
-  setTotalUsersCount: setTotalUsersCount,
-  toggleIsFetching: toggleIsFetching
+  follow,
+  unfollow,
+  setUsers,
+  setCurrentPage,
+  setTotalUsersCount,
+  toggleIsFetching
 })(UsersContainer);
 
 

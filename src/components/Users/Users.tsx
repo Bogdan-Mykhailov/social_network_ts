@@ -2,8 +2,9 @@ import React from 'react';
 import classes from "./Users.module.css";
 import userIcon from "../assets/images/userIcon.png";
 import {follow, UsersDataType} from "../../Redux/users-reducer";
+import {NavLink} from "react-router-dom";
 
-type UsersPropsTypes = {
+type UsersTypes = {
   totalUsers: number
   pageSize: number
   currentPage: number
@@ -13,7 +14,7 @@ type UsersPropsTypes = {
   unfollow: (id: string) => void
 }
 
-export const Users = (props: UsersPropsTypes) => {
+export const Users = (props: UsersTypes) => {
 
   let pageCount = Math.ceil(props.totalUsers / props.pageSize);
   const pages = []
@@ -37,8 +38,10 @@ export const Users = (props: UsersPropsTypes) => {
         props.users.map(u => <div key={u.id}>
           <span>
             <div>
-              <img src={u.photos.small !== null ? u.photos.small : userIcon} className={classes.userAvatar}
-                   alt="avatar"/>
+              <NavLink to={'/profile/' + u.id}>
+                <img src={u.photos.small !== null ? u.photos.small : userIcon} className={classes.userAvatar}
+                     alt="avatar"/>
+              </NavLink>
             </div>
             <div>
              {

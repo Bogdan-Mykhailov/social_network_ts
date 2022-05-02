@@ -1,11 +1,12 @@
 import {addNewMessageTextAC, updateMessageAC} from "./dialogs-reducer";
-import {follow, setCurrentPage, setUsers, unfollow} from "./users-reducer";
+import {follow, setCurrentPage, setUsers, unfollow, UsersDataType} from "./users-reducer";
 
 export type ActionsTypes =
   ReturnType<typeof addPostAC> |
   ReturnType<typeof updatePostAC> |
   ReturnType<typeof addNewMessageTextAC> |
-  ReturnType<typeof updateMessageAC>
+  ReturnType<typeof updateMessageAC> |
+  ReturnType<typeof setUserProfile>
 
 export type PostDataType = {
   id: number,
@@ -17,13 +18,13 @@ export type PostDataType = {
 export type ProfileReducerType = {
   postsData: PostDataType[]
   newPostText: string
+  profile: null | UsersDataType
 }
 
-
-// еще один вариант использования типов
 export enum ACTION_TYPE {
   ADD_POST = 'ADD-POST',
-  UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+  UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT',
+  SET_USER_PROFILE = 'SET-USER-PROFILE',
 }
 
 export const addPostAC = () => {
@@ -37,6 +38,12 @@ export const updatePostAC = (newText: string) => {
     newText: newText
   } as const
 }
+export const setUserProfile = (profile: UsersDataType) => {
+  return {
+    type: ACTION_TYPE.SET_USER_PROFILE,
+    profile
+  } as const
+}
 
 export let realTime = `${new Date().getHours()} : ${(new Date().getMinutes() < 10 ? '0' : '') + new Date().getMinutes()}`
 
@@ -46,7 +53,8 @@ let initialState: ProfileReducerType = {
     {id: 1, name: 'Neo', message: 'Нравится - не нравится, империя развалится.', count: 14515, time: '12:00'},
     {id: 2, name: 'Neo', message: 'Русский военный корабль, иди нахуй!', count: 22563, time: '12:00'}
   ] as PostDataType[],
-  newPostText: ''
+  newPostText: '',
+  profile: null
 }
 
 export const profileReducer = (state: ProfileReducerType = initialState, action: ActionsTypes): ProfileReducerType => {
@@ -65,6 +73,9 @@ export const profileReducer = (state: ProfileReducerType = initialState, action:
     case ACTION_TYPE.UPDATE_NEW_POST_TEXT: {
       state.newPostText = action.newText;
       return {...state, newPostText: action.newText};
+    }
+    case ACTION_TYPE.SET_USER_PROFILE: {
+      return {...state, profile: action.profile};
     }
 
     default:

@@ -5,12 +5,17 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {ActionsTypes} from "../../Redux/profile-reducer";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import {StoreTypeRedux} from "../../Redux/redux-store";
+import {UsersDataType} from "../../Redux/users-reducer";
 
-const Profile = () => {
+type ProfilePropsType = {
+  profile: UsersDataType
+}
+
+const Profile = (props: ProfilePropsType) => {
 
   return (
     <div>
-      <ProfileInfo/>
+      <ProfileInfo profile={props.profile}/>
       <MyPostsContainer/>
     </div>
   )
