@@ -5,7 +5,7 @@ import {UsersDataType} from "../../../Redux/users-reducer";
 import {Preloader} from "../../Common/Preloader/Preloader";
 
 type ProfileInfoPropsType = {
-  profile: UsersDataType
+  profile: null |UsersDataType
 }
 
 const ProfileInfo = (props: ProfileInfoPropsType) => {

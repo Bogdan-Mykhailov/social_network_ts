@@ -13,7 +13,7 @@ import {UsersDataType} from "../../Redux/users-reducer";
 type ProfilePropsType = MapStateToPropsType & MapDispatchToPropsType
 
 type MapStateToPropsType = {
-  profile: UsersDataType
+  profile: null |UsersDataType
 }
 
 type MapDispatchToPropsType = {
@@ -43,6 +43,4 @@ const mapStateToProps = (state: StoreTypeRedux) => {
   }
 }
 
-
-// @ts-ignore
 export default connect(mapStateToProps, {setUserProfile})(ProfileContainer);

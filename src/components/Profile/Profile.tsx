@@ -8,7 +8,7 @@ import {StoreTypeRedux} from "../../Redux/redux-store";
 import {UsersDataType} from "../../Redux/users-reducer";
 
 type ProfilePropsType = {
-  profile: UsersDataType
+  profile: null | UsersDataType
 }
 
 const Profile = (props: ProfilePropsType) => {
