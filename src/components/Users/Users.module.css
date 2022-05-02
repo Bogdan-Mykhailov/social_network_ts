@@ -1,3 +1,8 @@
+.wrapper {
+  height: 100%;
+  width: 100%;
+}
+
 .userAvatar {
   height: 60px;
   width: 60px;
@@ -6,4 +11,28 @@
 
 .selectedPage {
   font-weight: bold;
+}
+
+.pagesCount {
+  font-family: 'Museo Sans Cyrl', monospace;
+  font-weight: 300;
+  font-size: 25px;
+  color: #3B4259;
+  display: flex;
+  justify-content: center;
+}
+
+/*.currentPage {*/
+/*  margin: 10px;*/
+/*}*/
+
+.userBlock {
+  height: 100px;
+  width: 300px;
+  border: 1px solid #3B4259;
+  border-radius: 15px;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
 }

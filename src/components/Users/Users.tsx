@@ -23,19 +23,10 @@ export const Users = (props: UsersTypes) => {
   }
 
   return (
-    <div>
-      <div>
-        {pages.map((p, index) => {
+    <div className={classes.wrapper}>
 
-          return <span key={index}
-                       className={props.currentPage === p ? classes.selectedPage : ''}
-                       onClick={(e) => {
-                         props.onPageChanged(p)
-                       }}>{p}</span>
-        })}
-      </div>
       {
-        props.users.map(u => <div key={u.id}>
+        props.users.map(u => <div key={u.id} className={classes.userBlock}>
           <span>
             <div>
               <NavLink to={'/profile/' + u.id}>
@@ -60,13 +51,19 @@ export const Users = (props: UsersTypes) => {
               <div>{u.name}</div>
               <div>{u.status}</div>
             </span>
-            <span>
-              <div>{'u.location.country'}</div>
-              <div>{'u.location.city'}</div>
-            </span>
           </span>
         </div>)
       }
+      <div className={classes.pagesCount}>
+        {pages.map((p, index) => {
+
+          return <span key={index}
+                       className={props.currentPage === p ? classes.selectedPage : ''}
+                       onClick={(e) => {
+                         props.onPageChanged(p)
+                       }}>{p}</span>
+        })}
+      </div>
     </div>
   );
 };

@@ -10,18 +10,28 @@
   margin: 0 auto;
   margin-top: -25px;
   width: 990px;
-  height: 245px;
+  height: 250px;
   border-radius: 10px;
   object-fit: cover;
   object-position: 100% 50%;
 }
 
 .avatar img {
-  margin-left: 830px;
+  margin-left: 800px;
   position: relative;
   display: block;
   height: 170px;
-  border-radius: 25px;
+  border-radius: 100px;
   border: 5px solid #ADC5D9;
-  margin-top: -200px;
+  margin-top: -230px;
+}
+
+.nameTitle {
+  font-family: 'Museo Sans Cyrl', monospace;
+  color: #3B4259;
+  font-weight: 900;
+  font-size: 40px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }
