@@ -26,6 +26,7 @@ type MapDispatchToPropsType = {
 class ProfileContainer extends React.Component<PropsType> {
   componentDidMount() {
    let userId = this.props.match.params.userId
+
     if (!userId) {
       userId = '2';
     }
