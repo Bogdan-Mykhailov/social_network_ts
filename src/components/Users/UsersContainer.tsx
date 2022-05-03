@@ -83,7 +83,7 @@ const mapStateToProps = (state: StoreTypeRedux): mapStateToPropsType => {
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching
   }
-}
+};
 
 export default connect(mapStateToProps, {
   follow,
