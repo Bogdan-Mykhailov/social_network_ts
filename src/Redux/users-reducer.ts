@@ -1,8 +1,3 @@
-import {v1} from "uuid";
-import {addPostAC, updatePostAC} from "./profile-reducer";
-import {ReactJSXElement} from "@emotion/react/types/jsx-namespace";
-import {addNewMessageTextAC, updateMessageAC} from "./dialogs-reducer";
-
 export type UsersDataType = {
   id: string
   name: string

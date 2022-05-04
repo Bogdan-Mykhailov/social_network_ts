@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './ProfileInfo.module.css'
 import photo from './photo.jpg'
+import userIcon from '../../assets/images/userIcon.png'
 
 import {Preloader} from "../../Common/Preloader/Preloader";
 import {ProfileDataTypes} from "../../../Redux/profile-reducer";
@@ -24,7 +25,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
       </div>
 
       <div className={classes.avatar}>
-        <img src={props.profile.photos.large} alt="avatar"/>
+        <img src={props.profile.photos.large || userIcon} alt="avatar"/>
         <span className={classes.nameTitle}>{props.profile.fullName}</span>
       </div>
     </div>

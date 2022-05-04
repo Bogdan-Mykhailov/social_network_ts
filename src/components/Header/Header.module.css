@@ -7,14 +7,28 @@
     padding: 10px;
 }
 .title {
+    font-family: 'Museo Sans Cyrl', monospace;
     color: #ADC5D9;
-    margin-left: 90%;
+    margin-left: 10px;
     font-size: 25px;
-    font-weight: 700;
+    font-weight: 300;
     display: inline-block;
+    align-items: center;
 }
 .header img {
-    display: inline-block;
+    display: inline-flex;
     width: 40px;
     border-radius: 40%;
+}
+
+.loginBlock {
+    display: flex;
+    float: right;
+}
+
+.loginBlock a {
+    color: #6D86A6;
+    text-decoration: none;
+    font-family: 'Museo Sans Cyrl', monospace;
+    font-weight: bold;
 }

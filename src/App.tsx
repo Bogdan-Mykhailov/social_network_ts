@@ -15,17 +15,16 @@ import store, {StoreTypeRedux} from "./Redux/redux-store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 const App = () => {
   return (
     <div className='app-wrapper'>
-      <Header/>
+      <HeaderContainer/>
       <SideBar contactsData={store.getState().dialogsPage.dialogsData}/>
       <Navigation/>
       <div className='app-wrapper-content'>
-          <Route exact path='/'>
-              <Redirect to={'/profile'}/>
-          </Route>
+          <Route exact path='/'><Redirect to={'/profile'}/></Route>
           <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
           <Route path='/dialogs/' render={() => <DialogsContainer/>}/>
           <Route path='/news/' render={() => <News/>}/>

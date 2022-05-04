@@ -24,6 +24,7 @@ type MapDispatchToPropsType = {
 }
 
 class ProfileContainer extends React.Component<PropsType> {
+
   componentDidMount() {
    let userId = this.props.match.params.userId
 
@@ -39,7 +40,7 @@ class ProfileContainer extends React.Component<PropsType> {
   render() {
 
     return (
-      <Profile {...this.props} profile={this.props.profile}/>
+      <Profile profile={this.props.profile}/>
     )
   }
 }
