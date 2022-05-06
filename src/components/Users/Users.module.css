@@ -1,6 +1,8 @@
 .wrapper {
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .userAvatar {
@@ -19,7 +21,10 @@
   font-size: 25px;
   color: #3B4259;
   display: flex;
+  width: 100%;
   justify-content: center;
+  display: flex;
+
 }
 
 /*.currentPage {*/
@@ -28,7 +33,7 @@
 
 .userBlock {
   height: 100px;
-  width: 300px;
+  width: 200px;
   border: 1px solid #3B4259;
   border-radius: 15px;
   margin: 20px;

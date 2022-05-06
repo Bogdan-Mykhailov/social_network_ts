@@ -17,7 +17,8 @@ export type usersReducerType = {
   pageSize: number,
   totalUsers: number,
   currentPage: number,
-  isFetching: boolean
+  isFetching: boolean,
+  followingInProgres: string[]
 }
 
 export enum ACTION_TYPE {
@@ -26,15 +27,17 @@ export enum ACTION_TYPE {
   SET_USERS = 'SET-USERS',
   SET_CURRENT_PAGE = 'SET-CURRENT-PAGE',
   SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT',
-  IS_FETCHING = 'IS-FETCHING'
+  IS_FETCHING = 'IS-FETCHING',
+  IS_FOLLOWING_PROGRESS = 'IS-FOLLOWING-PROGRESS'
 }
 
 let initialState: usersReducerType = {
   users: [] as UsersDataType[],
-  pageSize: 6,
+  pageSize: 16,
   totalUsers: 0,
   currentPage: 1,
   isFetching: false,
+  followingInProgres: ['']
 }
 
 export type ActionsTypes =
@@ -43,7 +46,8 @@ export type ActionsTypes =
   setUsersACType |
   setCurrentPageACType |
   setTotalUsersCountACType |
-  toggleIsFetchingACType
+  toggleIsFetchingACType |
+  toggleIsFollowingProgressACType
 
 export const usersReducer = (state: usersReducerType = initialState, action: ActionsTypes): usersReducerType => {
 
@@ -79,6 +83,14 @@ export const usersReducer = (state: usersReducerType = initialState, action: Act
     case ACTION_TYPE.IS_FETCHING: {
       return {
         ...state, isFetching: action.payload.isFetching
+      }
+    }
+    case ACTION_TYPE.IS_FOLLOWING_PROGRESS: {
+      return {
+        ...state,
+        followingInProgres: action.payload.isFetching
+            ? [...state.followingInProgres, action.payload.userId]
+            : state.followingInProgres.filter(id => id != action.payload.userId)
       }
     }
 
@@ -143,6 +155,17 @@ export const toggleIsFetching = (isFetching: boolean) => {
     type: ACTION_TYPE.IS_FETCHING,
     payload: {
       isFetching,
+    },
+  } as const
+}
+
+export type toggleIsFollowingProgressACType = ReturnType<typeof toggleIsFollowingProgress>
+export const toggleIsFollowingProgress = (isFetching: boolean, userId: string) => {
+  return {
+    type: ACTION_TYPE.IS_FOLLOWING_PROGRESS,
+    payload: {
+      isFetching,
+      userId
     },
   } as const
 }
