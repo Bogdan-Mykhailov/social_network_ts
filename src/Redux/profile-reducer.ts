@@ -1,5 +1,6 @@
 import {addNewMessageTextAC, updateMessageAC} from "./dialogs-reducer";
 import {follow, setCurrentPage, setUsers, unfollow} from "./users-reducer";
+import {profileAPI} from "../api/api";
 
 export type ActionsTypes =
   ReturnType<typeof addPostAC> |
@@ -103,5 +104,16 @@ export const profileReducer = (state: ProfileReducerType = initialState, action:
 
     default:
       return state;
+  }
+}
+
+export const getUserProfile = (userId: string) => {
+  return (dispatch: any) => {
+
+    profileAPI.getProfile(userId)
+      .then(data => {
+       dispatch(setUserProfile(data));
+      });
+
   }
 }

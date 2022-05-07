@@ -1,3 +1,5 @@
+import {followUnfollowUserAPI, userAPI} from "../api/api";
+
 export type UsersDataType = {
   id: number
   name: string
@@ -95,8 +97,8 @@ export const usersReducer = (state: usersReducerType = initialState, action: Act
   }
 }
 
-export type followACType = ReturnType<typeof setUsers>
-export const follow = (userId: number) => {
+export type followACType = ReturnType<typeof followSuccess>
+export const followSuccess = (userId: number) => {
   return {
     type: ACTION_TYPE.FOLLOW,
     payload: {
@@ -105,8 +107,8 @@ export const follow = (userId: number) => {
   } as const
 }
 
-export type unfollowACType = ReturnType<typeof unfollow>
-export const unfollow = (userId: number) => {
+export type unfollowACType = ReturnType<typeof unfollowSuccess>
+export const unfollowSuccess = (userId: number) => {
   return {
     type: ACTION_TYPE.UNFOLLOW,
     payload: {
@@ -115,7 +117,7 @@ export const unfollow = (userId: number) => {
   } as const
 }
 
-export type setUsersACType = ReturnType<typeof follow>
+export type setUsersACType = ReturnType<typeof setUsers>
 export const setUsers = (users: UsersDataType[]) => {
   return {
     type: ACTION_TYPE.SET_USERS,
@@ -164,4 +166,42 @@ export const toggleIsFollowingProgress = (isFetching: boolean, userId: number) =
       userId
     },
   } as const
+}
+
+export const unfollow = (userId: number) => {
+  return (dispatch: any) => {
+    dispatch(toggleIsFollowingProgress( true, userId))
+    followUnfollowUserAPI.unFollowUser(userId)
+      .then(res => {
+        if (res.data.resultCode === 0) {
+          dispatch(unfollowSuccess(userId));
+        }
+        dispatch(toggleIsFollowingProgress(false, userId))
+      })
+  }
+}
+
+export const follow = (userId: number) => {
+  return (dispatch: any) => {
+    dispatch(toggleIsFollowingProgress( true, userId))
+    followUnfollowUserAPI.followUser(userId)
+      .then(res => {
+        if (res.data.resultCode === 0) {
+          dispatch(followSuccess(userId));
+        }
+        dispatch(toggleIsFollowingProgress(false, userId))
+      })
+  }
+}
+
+export const getUsers = (currentPage: number, pageSize: number) => {
+  return (dispatch: any) => {
+    dispatch(toggleIsFetching(true))
+    userAPI.getUsers(currentPage, pageSize).then(data => {
+      dispatch(toggleIsFetching(false))
+      dispatch(setUsers(data.items))
+      dispatch(setCurrentPage(currentPage))
+      dispatch(setTotalUsersCount(data.totalCount = 80))
+    });
+  }
 }

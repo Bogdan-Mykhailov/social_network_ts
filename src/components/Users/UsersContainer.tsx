@@ -4,10 +4,11 @@ import {Dispatch} from 'redux';
 import {StoreTypeRedux} from "../../Redux/redux-store";
 import {
   follow,
+  getUsers,
   setCurrentPage,
   setTotalUsersCount,
   setUsers,
-  toggleIsFetching, toggleIsFollowingProgress,
+  toggleIsFetching,
   unfollow,
   UsersDataType,
   usersReducerType
@@ -26,37 +27,22 @@ type mapStateToPropsType = {
   totalUsers: number,
   currentPage: number,
   isFetching: boolean,
-  followingInProgres: Number[]
+  followingInProgres: Number[],
 }
 type mapDispatchToPropsType = {
   follow: (userId: number) => void
   unfollow: (userId: number) => void
-  setUsers: (users: UsersDataType[]) => void
   setCurrentPage: (pageNumber: number) => void
-  setTotalUsersCount: (totalCount: number) => void
-  toggleIsFetching: (isFetching: boolean) => void
-  toggleIsFollowingProgress: (isFetching: boolean, userId: number) => void
+  getUsers: (currentPage: number, pageSize: number) => void
 }
 
 export class UsersContainer extends React.Component<UsersPropsType> {
   componentDidMount() {
-    this.props.toggleIsFetching(true)
-
-    userAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-      this.props.toggleIsFetching(false)
-      this.props.setUsers(data.items);
-      this.props.setTotalUsersCount(data.totalCount = 80);
-    });
+    this.props.getUsers(this.props.currentPage, this.props.pageSize)
   }
 
   onPageChanged = (pageNumber: number) => {
-    this.props.setCurrentPage(pageNumber);
-    this.props.toggleIsFetching(true)
-
-    userAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-        this.props.toggleIsFetching(false)
-        this.props.setUsers(data.items);
-      });
+    this.props.getUsers(pageNumber, this.props.pageSize)
   }
 
   render() {
@@ -73,7 +59,6 @@ export class UsersContainer extends React.Component<UsersPropsType> {
           follow={this.props.follow}
           unfollow={this.props.unfollow}
           followingInProgres={this.props.followingInProgres}
-          toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
         />
       </>
     );
@@ -94,11 +79,8 @@ const mapStateToProps = (state: StoreTypeRedux): mapStateToPropsType => {
 export default connect(mapStateToProps, {
   follow,
   unfollow,
-  setUsers,
   setCurrentPage,
-  setTotalUsersCount,
-  toggleIsFetching,
-  toggleIsFollowingProgress
+  getUsers
 })(UsersContainer);
 
 
