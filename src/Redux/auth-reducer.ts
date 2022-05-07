@@ -5,10 +5,6 @@ export type AuthReducerType = {
   email: null | string,
   login: null | string,
   isAuth: boolean
-  // fieldsErrors: []
-  // messages: []
-  // resultCode: 0
-  // isFetching: boolean
 }
 
 export enum ACTION_TYPE {
@@ -20,7 +16,6 @@ let initialState: AuthReducerType = {
   email: null,
   login: null,
   isAuth: false
-  // isFetching: false,
 }
 
 export type ActionsTypes = setAuthUserDataType

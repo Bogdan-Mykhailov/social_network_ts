@@ -1,19 +1,34 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
 import classes from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from './Message/Message'
 import {ActionsTypes} from "../../Redux/profile-reducer";
 import {addNewMessageTextAC, updateMessageAC} from "../../Redux/dialogs-reducer";
 import {StoreTypeRedux} from "../../Redux/redux-store";
-import { DialogsPropsType } from "./DialogsContainer";
+import {DialogsPropsType} from "./DialogsContainer";
 
 const Dialogs = (props: DialogsPropsType) => {
 
-  let dialogsDataItem = props.dialogsPage.dialogsData.map(i => <DialogItem key={i.id} id={i.id} name={i.name} avatar={i.avatar}/>)
+  const state = props.dialogsPage
 
-  let messageDataItem = props.dialogsPage.messageData.map(i => <Message key={i.id} id={i.id} message={i.message} name={i.name}
-                                                         avatar={i.avatar} time={i.time}/>)
+  let dialogsDataItem = state.dialogsData.map(i => <DialogItem
+    key={i.id}
+    id={i.id}
+    name={i.name}
+    avatar={i.avatar}
+  />)
+  let messageDataItem = state.messageData.map(i => <Message
+    key={i.id}
+    id={i.id}
+    message={i.message}
+    name={i.name}
+    avatar={i.avatar}
+    time={i.time}
+  />)
+
+  if (!props.isAuth) return <Redirect to={'/login'}/>
+
 
   return (
     <div className={classes.dialogs}>
@@ -25,11 +40,11 @@ const Dialogs = (props: DialogsPropsType) => {
           {messageDataItem}
         </div>
         <div>
-            <textarea value={props.newMessageText}
-                      onChange={props.onChangeMessageHandler}
-                      style={{resize: 'none'}}
-                      // onKeyPress={props.onKeyPressHandler}
-                      className={classes.textarea + ' ' + classes.active}
+            <textarea
+              onChange={props.onChangeMessageHandler}
+              style={{resize: 'none'}}
+              className={classes.textarea + ' ' + classes.active}
+              value={props.newMessageText}
             />
         </div>
         <div>

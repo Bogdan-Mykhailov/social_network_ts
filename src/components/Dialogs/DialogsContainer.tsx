@@ -10,11 +10,11 @@ import {Dispatch} from "redux";
 type mapStateToPropsType = {
   newMessageText: string
   dialogsPage: DialogsReducerType
+  isAuth: boolean
 }
 
 type mapDispatchToPropsType = {
   onClickAddMessageButtonHandler: () => void
-  // onKeyPressHandler: (event: KeyboardEvent<HTMLTextAreaElement>) => void
   onChangeMessageHandler: (event: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
@@ -23,7 +23,8 @@ export type DialogsPropsType = mapStateToPropsType & mapDispatchToPropsType;
 const mapStateToProps = (state: StoreTypeRedux): mapStateToPropsType  => {
   return {
     newMessageText: state.dialogsPage.newMessageText,
-    dialogsPage: state.dialogsPage
+    dialogsPage: state.dialogsPage,
+    isAuth: state.auth.isAuth
   }
 }
 
@@ -33,11 +34,7 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     onClickAddMessageButtonHandler: () => {
       dispatch(addNewMessageTextAC())
     },
-    // onKeyPressHandler: (event: KeyboardEvent<HTMLTextAreaElement>) => {
-    //   if (event.key === 'Enter') {
-    //     onClickAddMessageButtonHandler()
-    //   }
-    // },
+
     onChangeMessageHandler: (event: ChangeEvent<HTMLTextAreaElement>) => {
       dispatch(updateMessageAC(event.currentTarget.value))
     }
