@@ -3,7 +3,6 @@ import Header from "./Header";
 import {connect} from "react-redux";
 import {StoreTypeRedux} from "../../Redux/redux-store";
 import {getAuthUserData} from "../../Redux/auth-reducer";
-import {log} from "util";
 
 export type HeaderPropsType = MapStateToPropsType & MapDispatchToProps
 
