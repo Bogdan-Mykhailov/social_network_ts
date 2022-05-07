@@ -24,6 +24,7 @@
 .loginBlock {
     display: flex;
     float: right;
+    color: #6D86A6;
 }
 
 .loginBlock a {

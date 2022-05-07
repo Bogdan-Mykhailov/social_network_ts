@@ -1,16 +1,12 @@
 export type UsersDataType = {
-  id: string
+  id: number
   name: string
   status: string
   photos: {
     small: string
     large: string
   }
-  location: {
-    country: string
-    city: string
-  }
-  isFollow: boolean
+  followed: boolean
 }
 export type usersReducerType = {
   users: UsersDataType[],
@@ -18,7 +14,7 @@ export type usersReducerType = {
   totalUsers: number,
   currentPage: number,
   isFetching: boolean,
-  followingInProgres: string[]
+  followingInProgres: Number[]
 }
 
 export enum ACTION_TYPE {
@@ -36,8 +32,8 @@ let initialState: usersReducerType = {
   pageSize: 16,
   totalUsers: 0,
   currentPage: 1,
-  isFetching: false,
-  followingInProgres: ['']
+  isFetching: true,
+  followingInProgres: []
 }
 
 export type ActionsTypes =
@@ -55,13 +51,13 @@ export const usersReducer = (state: usersReducerType = initialState, action: Act
     case ACTION_TYPE.FOLLOW: {
       return {
         ...state,
-        users: state.users.map(u => u.id === action.payload.userId ? {...u, isFollow: false} : u)
+        users: state.users.map(u => u.id === action.payload.userId ? {...u, followed: true} : u)
       }
     }
     case ACTION_TYPE.UNFOLLOW: {
       return {
         ...state,
-        users: state.users.map(u => u.id === action.payload.userId ? {...u, isFollow: true} : u)
+        users: state.users.map(u => u.id === action.payload.userId ? {...u, followed: false} : u)
       }
 
     }
@@ -100,7 +96,7 @@ export const usersReducer = (state: usersReducerType = initialState, action: Act
 }
 
 export type followACType = ReturnType<typeof setUsers>
-export const follow = (userId: string) => {
+export const follow = (userId: number) => {
   return {
     type: ACTION_TYPE.FOLLOW,
     payload: {
@@ -110,7 +106,7 @@ export const follow = (userId: string) => {
 }
 
 export type unfollowACType = ReturnType<typeof unfollow>
-export const unfollow = (userId: string) => {
+export const unfollow = (userId: number) => {
   return {
     type: ACTION_TYPE.UNFOLLOW,
     payload: {
@@ -160,7 +156,7 @@ export const toggleIsFetching = (isFetching: boolean) => {
 }
 
 export type toggleIsFollowingProgressACType = ReturnType<typeof toggleIsFollowingProgress>
-export const toggleIsFollowingProgress = (isFetching: boolean, userId: string) => {
+export const toggleIsFollowingProgress = (isFetching: boolean, userId: number) => {
   return {
     type: ACTION_TYPE.IS_FOLLOWING_PROGRESS,
     payload: {

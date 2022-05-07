@@ -8,7 +8,7 @@ const instanse = axios.create({
 })
 
 export const userAPI = {
-    getUsers(currentPage, pageSize) {
+    getUsers(currentPage: number, pageSize: number) {
         return instanse.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(res => {
                 return res.data
@@ -17,11 +17,11 @@ export const userAPI = {
 }
 
 export const followUnfollowUserAPI = {
-    followUser(u) {
-        return instanse.post(`follow/${u.id}`, {})
+    followUser(userId: number) {
+        return instanse.post(`follow/${userId}`, {})
     },
-    unFollowUser(u) {
-        return instanse.delete(`follow/${u.id}`)
+    unFollowUser(userId: number) {
+        return instanse.delete(`follow/${userId}`)
     }
 }
 

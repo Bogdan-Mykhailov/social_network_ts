@@ -12,10 +12,10 @@ type UsersTypes = {
   currentPage: number
   onPageChanged: (p: number) => void
   users: UsersDataType[]
-  follow: (id: string) => void
-  unfollow: (id: string) => void
-  followingInProgres: string[]
-  toggleIsFollowingProgress: (isFetching: boolean, userId: string) => void
+  follow: (id: number) => void
+  unfollow: (id: number) => void
+  followingInProgres: Number[]
+  toggleIsFollowingProgress: (isFetching: boolean, userId: number) => void
 }
 
 export const Users = (props: UsersTypes) => {
@@ -40,36 +40,24 @@ export const Users = (props: UsersTypes) => {
             </div>
             <div>
              {
-               u.isFollow
+               u.followed
                  ? <button disabled={props.followingInProgres.some(id=> id === u.id)} onClick={() => {
-                   // axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                   //   withCredentials: true,
-                   //   headers: {
-                   //     "API-KEY": 'a6fd3c52-771e-48f1-889b-ca7971295a84'
-                   //   }
-                   // })
                  props.toggleIsFollowingProgress( true, u.id)
-                   followUnfollowUserAPI.followUser(u)
+                   followUnfollowUserAPI.unFollowUser(u.id)
                      .then(res => {
-                       if (res.data.resultCode == 0) {
-                         props.follow(u.id);
+                       if (res.data.resultCode === 0) {
+                         props.unfollow(u.id);
                        }
                        props.toggleIsFollowingProgress(false, u.id )
                      })
 
                  }}>Unfollow</button>
                  : <button disabled={props.followingInProgres.some(id=> id === u.id)} onClick={() => {
-                   // axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                   //   withCredentials: true,
-                   //   headers: {
-                   //     "API-KEY": 'a6fd3c52-771e-48f1-889b-ca7971295a84'
-                   //   }
-                   // })
                    props.toggleIsFollowingProgress(true, u.id)
-                   followUnfollowUserAPI.unFollowUser(u)
+                   followUnfollowUserAPI.followUser(u.id)
                      .then(res => {
-                       if (res.data.resultCode == 0) {
-                         props.unfollow(u.id)
+                       if (res.data.resultCode === 0) {
+                         props.follow(u.id)
                        }
                        props.toggleIsFollowingProgress(false, u.id)
                      })
