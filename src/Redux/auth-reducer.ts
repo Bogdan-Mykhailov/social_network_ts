@@ -1,4 +1,5 @@
 import {authAPI} from "../api/api";
+import {Dispatch} from "redux";
 
 export type AuthReducerType = {
   id: null | number,
@@ -52,7 +53,7 @@ export const setAuthUserData = (id: number, email: string, login: string) => {
 }
 
 export const getAuthUserData = () => {
-  return (dispatch: any) => {
+  return (dispatch: Dispatch) => {
     authAPI.authMe()
       .then(data => {
         if (data.resultCode == 0) {

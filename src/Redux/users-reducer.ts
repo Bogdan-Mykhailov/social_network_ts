@@ -1,4 +1,5 @@
 import {followUnfollowUserAPI, userAPI} from "../api/api";
+import {Dispatch} from "redux";
 
 export type UsersDataType = {
   id: number
@@ -169,7 +170,7 @@ export const toggleIsFollowingProgress = (isFetching: boolean, userId: number) =
 }
 
 export const unfollow = (userId: number) => {
-  return (dispatch: any) => {
+  return (dispatch: Dispatch) => {
     dispatch(toggleIsFollowingProgress( true, userId))
     followUnfollowUserAPI.unFollowUser(userId)
       .then(res => {
@@ -182,7 +183,7 @@ export const unfollow = (userId: number) => {
 }
 
 export const follow = (userId: number) => {
-  return (dispatch: any) => {
+  return (dispatch: Dispatch) => {
     dispatch(toggleIsFollowingProgress( true, userId))
     followUnfollowUserAPI.followUser(userId)
       .then(res => {
@@ -195,7 +196,7 @@ export const follow = (userId: number) => {
 }
 
 export const getUsers = (currentPage: number, pageSize: number) => {
-  return (dispatch: any) => {
+  return (dispatch: Dispatch) => {
     dispatch(toggleIsFetching(true))
     userAPI.getUsers(currentPage, pageSize).then(data => {
       dispatch(toggleIsFetching(false))
