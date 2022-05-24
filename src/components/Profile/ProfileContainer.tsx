@@ -50,4 +50,4 @@ const mapStateToProps = (state: StoreTypeRedux): MapStateToPropsType => {
   }
 }
 
-export default compose<React.ComponentType>(connect(mapStateToProps, {getUserProfile}), withRouter, WithAuthRedirect)(ProfileContainer)
+export default compose<React.ComponentType>(connect(mapStateToProps, {getUserProfile}), withRouter)(ProfileContainer)
