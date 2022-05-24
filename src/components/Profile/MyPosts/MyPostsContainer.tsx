@@ -12,7 +12,7 @@ type mapStateToPropsType = {
 }
 type mapDispatchToPropsType = {
   onClickAddPostButtonHandler: () => void
-  // onKeyPressHandler: (event: KeyboardEvent<HTMLTextAreaElement>) => void
+  onKeyPressHandler: (event: KeyboardEvent<HTMLTextAreaElement>) => void
   onChangePostHandler: (event: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
@@ -31,11 +31,11 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     onClickAddPostButtonHandler: () => {
       dispatch(addPostAC())
     },
-    // onKeyPressHandler: (event: KeyboardEvent<HTMLTextAreaElement>) => {
-    //   if (event.key === 'Enter') {
-    //     onClickAddPostButtonHandler()
-    //   }
-    // },
+    onKeyPressHandler: (event: KeyboardEvent<HTMLTextAreaElement>) => {
+      if (event.key === 'Enter') {
+        dispatch(addPostAC())
+      }
+    },
     onChangePostHandler: (event: ChangeEvent<HTMLTextAreaElement>) => {
       dispatch(updatePostAC(event.currentTarget.value))
     }

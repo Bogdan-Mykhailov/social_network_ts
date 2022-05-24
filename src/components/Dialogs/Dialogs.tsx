@@ -45,6 +45,7 @@ const Dialogs = (props: DialogsPropsType) => {
               style={{resize: 'none'}}
               className={classes.textarea + ' ' + classes.active}
               value={props.newMessageText}
+              onKeyPress={props.onKeyPressHandler}
             />
         </div>
         <div>

@@ -32,7 +32,7 @@ export enum ACTION_TYPE {
 
 let initialState: usersReducerType = {
   users: [] as UsersDataType[],
-  pageSize: 16,
+  pageSize: 20,
   totalUsers: 0,
   currentPage: 1,
   isFetching: true,

@@ -5,8 +5,9 @@ import {StoreTypeRedux} from "../../Redux/redux-store";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import myPosts from "../Profile/MyPosts/MyPosts";
-import {Dispatch} from "redux";
+import {compose, Dispatch} from "redux";
 import {Redirect} from "react-router-dom";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 type mapStateToPropsType = {
   newMessageText: string
@@ -16,6 +17,7 @@ type mapStateToPropsType = {
 type mapDispatchToPropsType = {
   onClickAddMessageButtonHandler: () => void
   onChangeMessageHandler: (event: ChangeEvent<HTMLTextAreaElement>) => void
+  onKeyPressHandler: (e: KeyboardEvent<HTMLTextAreaElement>) => void
 }
 export type DialogsPropsType = mapStateToPropsType & mapDispatchToPropsType;
 
@@ -32,17 +34,15 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     onClickAddMessageButtonHandler: () => {
       dispatch(addNewMessageTextAC())
     },
+    onKeyPressHandler: (e: KeyboardEvent<HTMLTextAreaElement>) => {
+      if (e.key === 'Enter') {
+        dispatch(addNewMessageTextAC())
+      }
+    },
     onChangeMessageHandler: (event: ChangeEvent<HTMLTextAreaElement>) => {
       dispatch(updateMessageAC(event.currentTarget.value))
     }
   }
 }
 
-const AuthRedirectComponent = (props: DialogsPropsType) => {
-  return <Dialogs {...props}/>
-}
-
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
-
-export default DialogsContainer;
-
+export default compose<React.ComponentType>(connect(mapStateToProps, mapDispatchToProps))(Dialogs);

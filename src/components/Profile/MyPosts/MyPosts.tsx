@@ -23,7 +23,7 @@ const MyPosts = (props: MyPostsProps) => {
             <textarea value={props.newPostText}
                       onChange={props.onChangePostHandler}
                       style={{resize: 'none'}}
-              // onKeyPress={props.onKeyPressHandler}
+                      onKeyPress={props.onKeyPressHandler}
                       className={classes.textarea + ' ' + classes.active}/>
         </div>
         <div>

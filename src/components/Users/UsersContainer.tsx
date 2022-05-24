@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Dispatch} from 'redux';
+import {compose, Dispatch} from 'redux';
 import {StoreTypeRedux} from "../../Redux/redux-store";
 import {
   follow,
@@ -18,6 +18,7 @@ import {Users} from "./Users";
 import inProgress from './assets/inProgress.svg'
 import {Preloader} from "../Common/Preloader/Preloader";
 import {userAPI} from "../../api/api";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType
 
@@ -76,11 +77,6 @@ const mapStateToProps = (state: StoreTypeRedux): mapStateToPropsType => {
   }
 };
 
-export default connect(mapStateToProps, {
-  follow,
-  unfollow,
-  setCurrentPage,
-  getUsers
-})(UsersContainer);
+export default compose<React.ComponentType>(connect(mapStateToProps, {follow, unfollow, setCurrentPage, getUsers}), WithAuthRedirect)(UsersContainer)
 
 
