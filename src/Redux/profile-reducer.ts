@@ -3,51 +3,6 @@ import {follow, setCurrentPage, setUsers, unfollow} from "./users-reducer";
 import {profileAPI} from "../api/api";
 import {Dispatch} from "redux";
 
-export type ActionsTypes =
-  | ReturnType<typeof addPostAC>
-  | ReturnType<typeof updatePostAC>
-  | ReturnType<typeof addNewMessageTextAC>
-  | ReturnType<typeof updateMessageAC>
-  | ReturnType<typeof setUserProfile>
-  | ReturnType<typeof setUserStatus>
-
-export type PostDataType = {
-  id: number,
-  name: string
-  message: string,
-  count: number
-  time: string
-}
-
-export type ProfileDataTypes = {
-  aboutMe: string
-  contacts: {
-    facebook: string
-    website: null,
-    vk: string
-    twitter: string
-    instagram: string
-    youtube: null,
-    github: string
-    mainLink: null
-  },
-  lookingForAJob: true,
-  lookingForAJobDescription: string
-  fullName: string
-  userId: 2,
-  photos: {
-    small: string
-    large: string
-  }
-}
-
-export type ProfileReducerType = {
-  postsData: PostDataType[]
-  newPostText: string
-  profile: null | ProfileDataTypes
-  status: string
-}
-
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
@@ -79,19 +34,61 @@ export const profileReducer = (state: ProfileReducerType = initialState, action:
       return {...state, newPostText: '', postsData: [...state.postsData, newPost]};
     }
     case UPDATE_NEW_POST_TEXT: {
-      state.newPostText = action.newText;
-      return {...state, newPostText: action.newText};
+      state.newPostText = action.payload.newText;
+      return {...state, newPostText: action.payload.newText};
     }
     case SET_USER_PROFILE: {
-      return {...state, profile: action.profile};
+      return {...state, profile: action.payload.profile};
     }
     case SET_USER_STATUS: {
-      return {...state, status: action.status};
+      return {...state, status: action.payload.status};
     }
 
     default:
       return state;
   }
+}
+
+//types
+export type ActionsTypes =
+  | ReturnType<typeof addPostAC>
+  | ReturnType<typeof updatePostAC>
+  | ReturnType<typeof setUserProfile>
+  | ReturnType<typeof setUserStatus>
+
+export type PostDataType = {
+  id: number,
+  name: string
+  message: string,
+  count: number
+  time: string
+}
+export type ProfileDataTypes = {
+  aboutMe: string
+  contacts: {
+    facebook: string
+    website: null,
+    vk: string
+    twitter: string
+    instagram: string
+    youtube: null,
+    github: string
+    mainLink: null
+  },
+  lookingForAJob: true,
+  lookingForAJobDescription: string
+  fullName: string
+  userId: 2,
+  photos: {
+    small: string
+    large: string
+  }
+}
+export type ProfileReducerType = {
+  postsData: PostDataType[]
+  newPostText: string
+  profile: null | ProfileDataTypes
+  status: string
 }
 
 //actions
@@ -103,19 +100,25 @@ export const addPostAC = () => {
 export const updatePostAC = (newText: string) => {
   return {
     type: UPDATE_NEW_POST_TEXT,
-    newText: newText
+    payload: {
+      newText
+    }
   } as const
 }
 export const setUserProfile = (profile: ProfileDataTypes) => {
   return {
     type: SET_USER_PROFILE,
-    profile
+    payload: {
+      profile
+    }
   } as const
 }
 export const setUserStatus = (status: string) => {
   return {
     type: SET_USER_STATUS,
-    status
+    payload: {
+      status
+    }
   } as const
 }
 

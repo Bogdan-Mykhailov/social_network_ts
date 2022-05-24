@@ -1,41 +1,7 @@
-import {ActionsTypes, realTime} from "./profile-reducer";
+import {realTime} from "./profile-reducer";
 
-export type DialogsDataType = {
-  id: number,
-  name: string,
-  avatar: string
-}
-export type MessagesDataType = {
-  id: number,
-  message: string,
-  name: string,
-  avatar: string,
-  time: string
-}
-export type DialogsReducerType = {
-  dialogsData: DialogsDataType[]
-  messageData: MessagesDataType[]
-  newMessageText: string
-}
-
-export enum ACTION_TYPE {
-  ADD_NEW_MESSAGE_TEXT = 'ADD-NEW-MESSAGE-TEXT',
-  UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
-}
-// const ADD_NEW_MESSAGE_TEXT = 'ADD-NEW-MESSAGE-TEXT';
-// const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
-
-export const addNewMessageTextAC = () => {
-  return {
-    type: ACTION_TYPE.ADD_NEW_MESSAGE_TEXT,
-  } as const
-}
-export const updateMessageAC = (updateMessage: string) => {
-  return {
-    type: ACTION_TYPE.UPDATE_NEW_MESSAGE_TEXT,
-    updateMessage: updateMessage
-  } as const
-}
+ const ADD_NEW_MESSAGE_TEXT = 'ADD-NEW-MESSAGE-TEXT'
+ const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 
 let initialState: DialogsReducerType = {
   dialogsData: [
@@ -98,9 +64,8 @@ let initialState: DialogsReducerType = {
 
 export const dialogsReducer = (state: DialogsReducerType = initialState, action: ActionsTypes): DialogsReducerType => {
 
-
   switch (action.type) {
-    case ACTION_TYPE.ADD_NEW_MESSAGE_TEXT: {
+    case ADD_NEW_MESSAGE_TEXT: {
       const newMessage: MessagesDataType = {
         id: new Date().getTime(),
         message: state.newMessageText,
@@ -110,12 +75,50 @@ export const dialogsReducer = (state: DialogsReducerType = initialState, action:
       };
       return {...state, newMessageText: '', messageData: [...state.messageData, newMessage]};
     }
-    case ACTION_TYPE.UPDATE_NEW_MESSAGE_TEXT: {
-      state.newMessageText = action.updateMessage;
-      return {...state, newMessageText: action.updateMessage};
+    case UPDATE_NEW_MESSAGE_TEXT: {
+      state.newMessageText = action.payload.updateMessage;
+      return {...state, newMessageText: action.payload.updateMessage};
     }
 
     default:
       return state
   }
+}
+
+//types
+export type ActionsTypes =
+  | ReturnType<typeof addNewMessageTextAC>
+  | ReturnType<typeof updateMessageAC>
+
+export type DialogsDataType = {
+  id: number,
+  name: string,
+  avatar: string
+}
+export type MessagesDataType = {
+  id: number,
+  message: string,
+  name: string,
+  avatar: string,
+  time: string
+}
+export type DialogsReducerType = {
+  dialogsData: DialogsDataType[]
+  messageData: MessagesDataType[]
+  newMessageText: string
+}
+
+//actions
+export const addNewMessageTextAC = () => {
+  return {
+    type: ADD_NEW_MESSAGE_TEXT,
+  } as const
+}
+export const updateMessageAC = (updateMessage: string) => {
+  return {
+    type: UPDATE_NEW_MESSAGE_TEXT,
+    payload: {
+      updateMessage
+    }
+  } as const
 }
