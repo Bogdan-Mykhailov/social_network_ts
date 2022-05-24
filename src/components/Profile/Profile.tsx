@@ -8,13 +8,15 @@ import {StoreTypeRedux} from "../../Redux/redux-store";
 
 type ProfilePropsType = {
   profile: null | ProfileDataTypes
+  status: string
+  updateUserStatus: (status: string) => void
 }
 
 const Profile = (props: ProfilePropsType) => {
 
   return (
     <div>
-      <ProfileInfo profile={props.profile}/>
+      <ProfileInfo profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus}/>
       <MyPostsContainer/>
     </div>
   )
