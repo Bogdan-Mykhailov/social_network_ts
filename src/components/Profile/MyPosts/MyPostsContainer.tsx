@@ -1,5 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
-import {ActionsTypes, addPostAC, PostDataType, updatePostAC} from "../../../Redux/profile-reducer";
+import {addPostAC, PostDataType, updatePostAC} from "../../../Redux/profile-reducer";
 import MyPosts from "./MyPosts";
 import {StoreTypeRedux} from "../../../Redux/redux-store";
 import myPosts from "./MyPosts";

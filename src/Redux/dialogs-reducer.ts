@@ -62,7 +62,7 @@ let initialState: DialogsReducerType = {
   newMessageText: ''
 }
 
-export const dialogsReducer = (state: DialogsReducerType = initialState, action: ActionsTypes): DialogsReducerType => {
+export const dialogsReducer = (state: DialogsReducerType = initialState, action: DialogActionsTypes): DialogsReducerType => {
 
   switch (action.type) {
     case ADD_NEW_MESSAGE_TEXT: {
@@ -86,7 +86,7 @@ export const dialogsReducer = (state: DialogsReducerType = initialState, action:
 }
 
 //types
-export type ActionsTypes =
+export type DialogActionsTypes =
   | ReturnType<typeof addNewMessageTextAC>
   | ReturnType<typeof updateMessageAC>
 

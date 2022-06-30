@@ -18,7 +18,7 @@ let initialState: usersReducerType = {
   followingInProgres: []
 }
 
-export const usersReducer = (state: usersReducerType = initialState, action: ActionsTypes): usersReducerType => {
+export const usersReducer = (state: usersReducerType = initialState, action: UserActionsTypes): usersReducerType => {
 
   switch (action.type) {
     case FOLLOW: {
@@ -69,7 +69,7 @@ export const usersReducer = (state: usersReducerType = initialState, action: Act
 }
 
 //types
-export type ActionsTypes =
+export type UserActionsTypes =
   | ReturnType<typeof followSuccess>
   | ReturnType<typeof unfollowSuccess>
   | ReturnType<typeof setUsers>

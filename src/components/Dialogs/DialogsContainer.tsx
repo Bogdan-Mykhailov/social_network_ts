@@ -1,5 +1,4 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
-import {ActionsTypes} from "../../Redux/profile-reducer";
 import {addNewMessageTextAC, DialogsReducerType, updateMessageAC} from "../../Redux/dialogs-reducer";
 import {StoreTypeRedux} from "../../Redux/redux-store";
 import Dialogs from "./Dialogs";

@@ -10,8 +10,7 @@ let initialState: AuthReducerType = {
   isAuth: false
 }
 
-
-export const authReducer = (state: AuthReducerType = initialState, action: ActionsTypes): AuthReducerType => {
+export const authReducer = (state: AuthReducerType = initialState, action: AuthActionsTypes): AuthReducerType => {
 
   switch (action.type) {
     case SET_USER_DATA: {
@@ -29,7 +28,7 @@ export const authReducer = (state: AuthReducerType = initialState, action: Actio
 
 //types
 
-export type ActionsTypes =
+export type AuthActionsTypes =
   | ReturnType<typeof setAuthUserData>
 
 export type AuthReducerType = {

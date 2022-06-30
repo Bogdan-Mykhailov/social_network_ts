@@ -11,7 +11,6 @@ import Friends from "./components/Friends/Friends";
 import Login from "./components/Login/Login";
 import {BrowserRouter, Redirect, Route} from "react-router-dom";
 import {SideBar} from "./components/SideBar/SideBar";
-import {ActionsTypes} from './Redux/profile-reducer';
 import store, {StoreTypeRedux} from "./Redux/redux-store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from './components/Users/UsersContainer';

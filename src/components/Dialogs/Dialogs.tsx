@@ -3,7 +3,6 @@ import {NavLink, Redirect} from "react-router-dom";
 import classes from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from './Message/Message'
-import {ActionsTypes} from "../../Redux/profile-reducer";
 import {addNewMessageTextAC, updateMessageAC} from "../../Redux/dialogs-reducer";
 import {StoreTypeRedux} from "../../Redux/redux-store";
 import {DialogsPropsType} from "./DialogsContainer";

@@ -20,7 +20,7 @@ const initialState: ProfileReducerType = {
   status: ''
 }
 
-export const profileReducer = (state: ProfileReducerType = initialState, action: ActionsTypes): ProfileReducerType => {
+export const profileReducer = (state: ProfileReducerType = initialState, action: ProfileActionsTypes): ProfileReducerType => {
 
   switch (action.type) {
     case ADD_POST: {
@@ -50,7 +50,7 @@ export const profileReducer = (state: ProfileReducerType = initialState, action:
 }
 
 //types
-export type ActionsTypes =
+export type ProfileActionsTypes =
   | ReturnType<typeof addPostAC>
   | ReturnType<typeof updatePostAC>
   | ReturnType<typeof setUserProfile>

@@ -1,18 +1,19 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
 import classes from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {ActionsTypes, addPostAC, updatePostAC} from "../../../Redux/profile-reducer";
+import {addPostAC, updatePostAC} from "../../../Redux/profile-reducer";
 import {text} from "stream/consumers";
 import {MyPostsProps} from "./MyPostsContainer";
 
 const MyPosts = (props: MyPostsProps) => {
 
-  let postDataItem = props.postMessage.map(i => <Post key={i.id}
-                                                      id={i.id}
-                                                      name={i.name}
-                                                      message={i.message}
-                                                      count={i.count}
-                                                      time={i.time}
+  let postDataItem = props.postMessage.map(i => <Post
+      key={i.id}
+      id={i.id}
+      name={i.name}
+      message={i.message}
+      count={i.count}
+      time={i.time}
     />
   )
 
