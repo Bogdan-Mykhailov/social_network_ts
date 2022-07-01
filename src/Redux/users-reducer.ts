@@ -1,5 +1,5 @@
-import {followUnfollowUserAPI, userAPI} from "../api/api";
 import {Dispatch} from "redux";
+import {followUnfollowUserAPI, userAPI } from "../api/user-API";
 
 const FOLLOW = 'FOLLOW-USER'
 const UNFOLLOW = 'UNFOLLOW-USER'

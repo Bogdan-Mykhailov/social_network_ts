@@ -34,12 +34,11 @@ class ProfileContainer extends React.Component<PropsType> {
     if (!userId) {
       userId = '23189';
     }
-    this.props.getUserProfile(userId);
+    this.props.getUserProfile(userId)
     this.props.getUserStatus(userId)
   }
 
   render() {
-
     return (
       <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateUserStatus={this.props.updateUserStatus}/>
     )

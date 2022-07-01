@@ -14,7 +14,6 @@ export function WithAuthRedirect<T>(Component: ComponentType<T>) {
     if (!isAuth) return <Redirect to={'/login'}/>
 
     return <Component {...restProps as T}/>
-
   }
 
   const mapStateToProps = (state: StoreTypeRedux): MapStateToPropsType => {

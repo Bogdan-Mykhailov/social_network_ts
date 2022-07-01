@@ -17,7 +17,6 @@ import axios from "axios";
 import {Users} from "./Users";
 import inProgress from './assets/inProgress.svg'
 import {Preloader} from "../Common/Preloader/Preloader";
-import {userAPI} from "../../api/api";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType

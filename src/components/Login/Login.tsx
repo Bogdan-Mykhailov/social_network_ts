@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useFormik} from 'formik';
 import FormControl from '@mui/material/FormControl/FormControl';
 import FormLabel from '@mui/material/FormLabel/FormLabel';
@@ -8,6 +8,10 @@ import FormControlLabel from '@mui/material/FormControlLabel/FormControlLabel';
 import Button from '@mui/material/Button/Button';
 import Checkbox from '@mui/material/Checkbox/Checkbox';
 import Grid from '@mui/material/Grid/Grid';
+import {useTypedDispatch, useTypedSelector} from "../../Redux/redux-store";
+import {setLoggedInTC} from "../../Redux/auth-reducer";
+import {Redirect, Route} from "react-router-dom";
+import s from './Login.module.css'
 
 type ErrorType = {
   email?: string,
@@ -16,6 +20,8 @@ type ErrorType = {
 }
 
 export const Login = () => {
+  const isAuth = useTypedSelector(state => state.auth.isAuth)
+  const dispatch = useTypedDispatch()
 
   const formik = useFormik({
     initialValues: {
@@ -35,18 +41,23 @@ export const Login = () => {
       } else if (values.password.length < 4) {
         errors.password = 'Must be 4 characters or more';
       }
-
       return errors;
     },
 
     onSubmit: values => {
-      alert(JSON.stringify(values));
+      dispatch(setLoggedInTC(values))
       formik.resetForm()
     },
   });
 
+  if (isAuth) {
+    return <Redirect to={'/profile'}/>
+  }
+
   return (
     <div>
+      <h2>Login</h2>
+      {/*<LoginForm/>*/}
       <form onSubmit={formik.handleSubmit}>
         <Grid container justifyContent={'center'}>
           <Grid item justifyContent={'center'}>
@@ -74,7 +85,8 @@ export const Login = () => {
                   margin="normal"
                   {...formik.getFieldProps('password')}
                 />
-                {formik.touched.password && formik.errors.password && <div style={{color: 'red'}}>{formik.errors.password}</div>}
+                {formik.touched.password && formik.errors.password &&
+                    <div style={{color: 'red'}}>{formik.errors.password}</div>}
                 <FormControlLabel
                   label={'Remember me'}
                   control={<Checkbox/>}

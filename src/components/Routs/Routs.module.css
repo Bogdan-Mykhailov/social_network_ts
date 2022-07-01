@@ -1,0 +1,5 @@
+.routsWrapper {
+  grid-area: c;
+  background-color: #ADC5D9;
+  box-shadow: 0 5px 8px -9px rgba(0, 0, 0, 0.75);
+}

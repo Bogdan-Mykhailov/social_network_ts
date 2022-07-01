@@ -1,7 +1,7 @@
 import {addNewMessageTextAC, updateMessageAC} from "./dialogs-reducer";
 import {follow, setCurrentPage, setUsers, unfollow} from "./users-reducer";
-import {profileAPI} from "../api/api";
 import {Dispatch} from "redux";
+import {profileAPI} from "../api/profile-API";
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
@@ -49,6 +49,59 @@ export const profileReducer = (state: ProfileReducerType = initialState, action:
   }
 }
 
+//actions
+export const addPostAC = () => {
+  return {
+    type: ADD_POST,
+  } as const
+}
+export const updatePostAC = (newText: string) => {
+  return {
+    type: UPDATE_NEW_POST_TEXT,
+    payload: {
+      newText
+    }
+  } as const
+}
+export const setUserProfile = (profile: ProfileDataTypes) => {
+  return {
+    type: SET_USER_PROFILE,
+    payload: {
+      profile
+    }
+  } as const
+}
+export const setUserStatus = (status: string) => {
+  return {
+    type: SET_USER_STATUS,
+    payload: {
+      status
+    }
+  } as const
+}
+
+//thunk
+export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
+  profileAPI.getProfile(userId)
+    .then((data) => {
+      dispatch(setUserProfile(data))
+    });
+}
+export const getUserStatus = (userId: string) => (dispatch: Dispatch) => {
+  profileAPI.getStatus(userId)
+    .then((data) => {
+      dispatch(setUserStatus(data))
+    });
+}
+export const updateUserStatus = (status: string) => (dispatch: Dispatch) => {
+  profileAPI.updateStatus(status)
+    .then((res) => {
+      if (res.data.resultCode === 0) {
+        dispatch(setUserStatus(status))
+      }
+    })
+}
+
 //types
 export type ProfileActionsTypes =
   | ReturnType<typeof addPostAC>
@@ -89,53 +142,4 @@ export type ProfileReducerType = {
   newPostText: string
   profile: null | ProfileDataTypes
   status: string
-}
-
-//actions
-export const addPostAC = () => {
-  return {
-    type: ADD_POST,
-  } as const
-}
-export const updatePostAC = (newText: string) => {
-  return {
-    type: UPDATE_NEW_POST_TEXT,
-    payload: {
-      newText
-    }
-  } as const
-}
-export const setUserProfile = (profile: ProfileDataTypes) => {
-  return {
-    type: SET_USER_PROFILE,
-    payload: {
-      profile
-    }
-  } as const
-}
-export const setUserStatus = (status: string) => {
-  return {
-    type: SET_USER_STATUS,
-    payload: {
-      status
-    }
-  } as const
-}
-
-//thunk
-export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
-  profileAPI.getProfile(userId)
-    .then((data) => dispatch(setUserProfile(data)));
-}
-export const getUserStatus = (userId: string) => (dispatch: Dispatch) => {
-  profileAPI.getStatus(userId)
-    .then((data) => dispatch(setUserStatus(data)));
-}
-export const updateUserStatus = (status: string) => (dispatch: Dispatch) => {
-  profileAPI.updateStatus(status)
-    .then((res) => {
-      if (res.data.resultCode === 0) {
-        dispatch(setUserStatus(status))
-      }
-    })
 }

@@ -4,7 +4,6 @@ import userIcon from "../assets/images/userIcon.png";
 import {follow, toggleIsFollowingProgress, UsersDataType} from "../../Redux/users-reducer";
 import {NavLink} from "react-router-dom";
 import axios from 'axios';
-import {followUnfollowUserAPI} from "../../api/api";
 
 type UsersTypes = {
   totalUsers: number
