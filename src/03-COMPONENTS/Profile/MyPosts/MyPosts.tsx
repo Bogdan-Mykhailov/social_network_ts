@@ -1,9 +1,8 @@
-import React, {ChangeEvent, KeyboardEvent} from "react";
+import React from "react";
 import classes from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {addPostAC, updatePostAC} from "../../../02-BLL/profile-reducer";
-import {text} from "stream/consumers";
 import {MyPostsProps} from "./MyPostsContainer";
+import {MyPostsForm} from "./MyPostsForm";
 
 const MyPosts = (props: MyPostsProps) => {
 
@@ -20,17 +19,7 @@ const MyPosts = (props: MyPostsProps) => {
   return (
     <div className={classes.wraper}>
       <div className={classes.postsbar}>
-        <div>
-            <textarea value={props.newPostText}
-                      onChange={props.onChangePostHandler}
-                      style={{resize: 'none'}}
-                      onKeyPress={props.onKeyPressHandler}
-                      className={classes.textarea + ' ' + classes.active}/>
-        </div>
-        <div>
-          <button onClick={props.onClickAddPostButtonHandler} className={classes.add + ' ' + classes.active}>Add post
-          </button>
-        </div>
+        <MyPostsForm addPostHandler={props.addPostHandler}/>
       </div>
       <div className={classes.post}>
         {postDataItem}

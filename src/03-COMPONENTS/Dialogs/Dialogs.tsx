@@ -1,11 +1,9 @@
-import React, {ChangeEvent, KeyboardEvent} from "react";
-import {NavLink, Redirect} from "react-router-dom";
+import React from "react";
 import classes from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from './Message/Message'
-import {addNewMessageTextAC, updateMessageAC} from "../../02-BLL/dialogs-reducer";
-import {StoreTypeRedux} from "../../02-BLL/store";
 import {DialogsPropsType} from "./DialogsContainer";
+import {DialogsForm} from "./DialogsForm";
 
 const Dialogs = (props: DialogsPropsType) => {
 
@@ -26,9 +24,6 @@ const Dialogs = (props: DialogsPropsType) => {
     time={i.time}
   />)
 
-  if (!props.isAuth) return <Redirect to={'/login'}/>
-
-
   return (
     <div className={classes.dialogs}>
       <div className={classes.dialogItems}>
@@ -38,23 +33,13 @@ const Dialogs = (props: DialogsPropsType) => {
         <div className={classes.messageItem}>
           {messageDataItem}
         </div>
-        <div>
-            <textarea
-              onChange={props.onChangeMessageHandler}
-              style={{resize: 'none'}}
-              className={classes.textarea + ' ' + classes.active}
-              value={props.newMessageText}
-              onKeyPress={props.onKeyPressHandler}
-            />
-        </div>
-        <div>
-          <button
-            onClick={props.onClickAddMessageButtonHandler}
-            className={classes.add + ' ' + classes.active}>Add message
-          </button>
-        </div>
+        <DialogsForm addMessageHandler={props.addMessageHandler}/>
       </div>
     </div>
   );
 }
 export default Dialogs;
+
+
+
+

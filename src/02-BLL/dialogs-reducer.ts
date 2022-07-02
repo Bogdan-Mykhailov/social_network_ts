@@ -59,7 +59,7 @@ let initialState: DialogsReducerType = {
       time: '14:57'
     },
   ] as MessagesDataType[],
-  newMessageText: ''
+  // newMessageText: ''
 }
 
 export const dialogsReducer = (state: DialogsReducerType = initialState, action: DialogActionsTypes): DialogsReducerType => {
@@ -68,17 +68,17 @@ export const dialogsReducer = (state: DialogsReducerType = initialState, action:
     case ADD_NEW_MESSAGE_TEXT: {
       const newMessage: MessagesDataType = {
         id: new Date().getTime(),
-        message: state.newMessageText,
+        message: action.payload.newMessageText,
         name: 'Pikachu',
         avatar: 'https://i.pinimg.com/originals/80/d8/e0/80d8e0232d36605e4fb8697353d4a4f2.gif',
         time: realTime
       };
-      return {...state, newMessageText: '', messageData: [...state.messageData, newMessage]};
+      return {...state, messageData: [...state.messageData, newMessage]};
     }
-    case UPDATE_NEW_MESSAGE_TEXT: {
-      state.newMessageText = action.payload.updateMessage;
-      return {...state, newMessageText: action.payload.updateMessage};
-    }
+    // case UPDATE_NEW_MESSAGE_TEXT: {
+    //   state.newMessageText = action.payload.updateMessage;
+    //   return {...state, newMessageText: action.payload.updateMessage};
+    // }
 
     default:
       return state
@@ -88,7 +88,6 @@ export const dialogsReducer = (state: DialogsReducerType = initialState, action:
 //types
 export type DialogActionsTypes =
   | ReturnType<typeof addNewMessageTextAC>
-  | ReturnType<typeof updateMessageAC>
 
 export type DialogsDataType = {
   id: number,
@@ -105,20 +104,9 @@ export type MessagesDataType = {
 export type DialogsReducerType = {
   dialogsData: DialogsDataType[]
   messageData: MessagesDataType[]
-  newMessageText: string
+
 }
 
 //actions
-export const addNewMessageTextAC = () => {
-  return {
-    type: ADD_NEW_MESSAGE_TEXT,
-  } as const
-}
-export const updateMessageAC = (updateMessage: string) => {
-  return {
-    type: UPDATE_NEW_MESSAGE_TEXT,
-    payload: {
-      updateMessage
-    }
-  } as const
-}
+export const addNewMessageTextAC = (newMessageText: string) => ({type: ADD_NEW_MESSAGE_TEXT,
+  payload: {newMessageText}})as const

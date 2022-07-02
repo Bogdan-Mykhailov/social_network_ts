@@ -32,7 +32,3 @@ const Header = (props: HeaderType) => {
   )
 }
 export default Header;
-
-function setLoggedOutTC(): any {
-  throw new Error("Function not implemented.");
-}
