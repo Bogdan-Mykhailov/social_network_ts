@@ -1,11 +1,10 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import Navigation from "./components/Navigation/Navigation"
-import {Login} from "./components/Login/Login";
-import {SideBar} from "./components/SideBar/SideBar";
-import store, {useTypedSelector} from "./Redux/redux-store";
-import HeaderContainer from "./components/Header/HeaderContainer";
-import {Routs} from './components/Routs/Routs';
+import Navigation from "./03-COMPONENTS/Navigation/Navigation"
+import {SideBar} from "./03-COMPONENTS/SideBar/SideBar";
+import store, {useTypedSelector} from "./02-BLL/store";
+import HeaderContainer from "./03-COMPONENTS/Header/HeaderContainer";
+import {Routs} from './03-COMPONENTS/Routs/Routs';
 import {Redirect} from 'react-router-dom';
 
 const App = () => {
