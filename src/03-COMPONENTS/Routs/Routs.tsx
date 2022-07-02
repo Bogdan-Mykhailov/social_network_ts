@@ -11,6 +11,7 @@ import React from "react";
 import s from './Routs.module.css'
 
 export const Routs = () => {
+
   return (
     <div className={s.routsWrapper}>
       <Route exact path='/'><Redirect to={'/profile'}/></Route>
